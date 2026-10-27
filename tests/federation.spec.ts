@@ -34,8 +34,11 @@ test('federation loads three real HTTP remote entries and exposes runtime identi
   for (const name of ['counter', 'context', 'portal']) {
     await expect(page.getByTestId(`identity-${name}-contextObject`)).toHaveText('PASS')
   }
+  if (scenario === 'redact-optimized') {
+    expect(await page.evaluate(() => (globalThis as any)._FEDERATION_RUNTIME_CORE_FROM)).toEqual({ name: 'start_host', version: '2.9.2' })
+  }
   const evidence = { scenario, hostURL: page.url(), testedAt: new Date().toISOString(), node: process.version, browser: page.context().browser()?.version(),
-    remoteOrigins: [...entries].sort(), identity: await page.locator('tbody').innerText(),
+    remoteOrigins: [...entries].sort(), identity: await page.locator('.evidence tbody').innerText(),
     renderedErrors: await page.locator('[data-testid$="-error"]').allTextContents() }
   mkdirSync('artifacts/latest', { recursive: true })
   writeFileSync(`artifacts/latest/${evidenceName}-identity.json`, JSON.stringify(evidence, null, 2) + '\n')
@@ -109,4 +112,18 @@ test('default aliases produce distinct exports even when the tested interactions
   await expect(page.getByTestId('identity-status')).toHaveText('Runtime identity mismatch')
   for (const name of ['counter', 'context', 'portal']) await expect(page.getByTestId(name)).toBeVisible()
   await page.screenshot({ path: `artifacts/latest/${scenario}-desktop.png`, fullPage: true })
+})
+
+test('the benchmark showcase switches metrics and profiles with traceable data', async ({ page }) => {
+  await page.goto('/')
+  await expect(page.locator('.benchmark-row')).toHaveCount(4)
+  await expect(page.locator('.benchmark-takeaway')).toContainText('requested')
+  await page.getByRole('button', { name: 'Emitted JS/CSS', exact: true }).click()
+  await expect(page.locator('.benchmark-takeaway')).toContainText('emitted')
+  await page.getByRole('button', { name: 'Remote-ready time', exact: true }).click()
+  await expect(page.locator('.benchmark-takeaway')).toContainText('Local timing')
+  await page.getByLabel('Benchmark profile', { exact: true }).selectOption('loopback')
+  await expect(page.locator('.bar-detail').first()).toContainText('Middle 50%')
+  await page.getByText('How the optimized build works', { exact: true }).click()
+  await expect(page.locator('.config-columns')).toContainText('externalRuntime: true')
 })

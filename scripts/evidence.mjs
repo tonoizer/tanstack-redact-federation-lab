@@ -2,9 +2,10 @@ import { execFileSync } from 'node:child_process'
 import { mkdirSync, readFileSync, readdirSync, writeFileSync, copyFileSync } from 'node:fs'
 import { join, relative } from 'node:path'
 import { gzipSync } from 'node:zlib'
+import scenarioNames from '../shared/scenarios.json' with { type: 'json' }
 
 const packages = JSON.parse(readFileSync('package.json', 'utf8'))
-const scenarios = ['react', 'redact-naive', 'redact-shared', 'zephyr-live']
+const scenarios = [...scenarioNames, 'zephyr-live']
 const results = scenarios.map(name => {
   const report = JSON.parse(readFileSync(`artifacts/latest/${name}-playwright.json`, 'utf8'))
   if (report.stats.unexpected || report.stats.flaky || report.errors.length) throw new Error(`${name} has test failures; cannot record successful evidence`)
@@ -44,5 +45,5 @@ const evidence = {
 }
 mkdirSync('docs/evidence', { recursive: true })
 writeFileSync('docs/evidence/results.json', JSON.stringify(evidence, null, 2) + '\n')
-for (const name of ['redact-shared', 'redact-naive', 'zephyr-live']) copyFileSync(`artifacts/latest/${name}-desktop.png`, `docs/evidence/${name}.png`)
+for (const name of ['redact-shared', 'redact-naive', 'redact-optimized', 'zephyr-live']) copyFileSync(`artifacts/latest/${name}-desktop.png`, `docs/evidence/${name}.png`)
 console.log(JSON.stringify({ tests: results.map(r => ({ scenario: r.name, passed: r.tests.filter(t => t.status === 'passed').length, skipped: r.tests.filter(t => t.status === 'skipped').length })), bundles: bundles.map(b => ({ scenario: b.scenario, totalGzipBytes: b.totalGzipBytes })) }, null, 2))

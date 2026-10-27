@@ -1,0 +1,791 @@
+{
+  "recordedAt": "2026-10-27T14:54:52.133Z",
+  "sourceCommit": "ef2e5d4d9b781454ccb1a542f0cd93a7fa189298",
+  "versions": {
+    "@module-federation/enhanced": "2.9.2",
+    "@tanstack/react-router": "1.170.46",
+    "@tanstack/react-start": "1.169.4",
+    "@tanstack/redact": "0.2.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "@cloudflare/vite-plugin": "1.65.0",
+    "@module-federation/vite": "1.23.6",
+    "@playwright/test": "1.64.1",
+    "@types/node": "24.10.0",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "6.1.2",
+    "typescript": "7.0.2",
+    "vite": "8.3.5",
+    "vite-plugin-tanstack-start-zephyr": "1.7.0",
+    "vite-plugin-zephyr": "1.7.0",
+    "wrangler": "4.153.0"
+  },
+  "scope": "Production builds; Chromium; one JavaScript global; SSR host shell; browser-loaded remote components.",
+  "results": [
+    {
+      "name": "react",
+      "identity": {
+        "scenario": "react",
+        "hostURL": "http://localhost:4100/",
+        "testedAt": "2026-10-27T14:54:24.895Z",
+        "node": "v24.19.0",
+        "browser": "156.0.8078.4",
+        "remoteOrigins": [
+          "http://localhost:4101",
+          "http://localhost:4102",
+          "http://localhost:4103"
+        ],
+        "identity": "counter\tPASS\tPASS\tPASS\tPASS\t—\ncontext\tPASS\tPASS\tPASS\tPASS\t—\nportal\tPASS\tPASS\tPASS\tPASS\tPASS",
+        "renderedErrors": []
+      },
+      "tests": [
+        {
+          "title": "Start serves real HTML and hydration preserves the server DOM node",
+          "status": "passed"
+        },
+        {
+          "title": "federation loads three real HTTP remote entries and exposes runtime identity",
+          "status": "passed"
+        },
+        {
+          "title": "hooks, host context, remote callbacks, portals and remounts work across boundaries",
+          "status": "passed"
+        },
+        {
+          "title": "Suspense fallback remains visible while a remote HTTP request is delayed",
+          "status": "passed"
+        },
+        {
+          "title": "a failed remote is contained and the other two remain interactive",
+          "status": "passed"
+        },
+        {
+          "title": "default aliases produce distinct exports even when the tested interactions work",
+          "status": "skipped"
+        }
+      ]
+    },
+    {
+      "name": "redact-naive",
+      "identity": {
+        "scenario": "redact-naive",
+        "hostURL": "http://localhost:4100/",
+        "testedAt": "2026-10-27T14:54:31.375Z",
+        "node": "v24.19.0",
+        "browser": "156.0.8078.4",
+        "remoteOrigins": [
+          "http://localhost:4101",
+          "http://localhost:4102",
+          "http://localhost:4103"
+        ],
+        "identity": "counter\tFAIL\tFAIL\tFAIL\tPASS\t—\ncontext\tFAIL\tFAIL\tFAIL\tPASS\t—\nportal\tFAIL\tFAIL\tFAIL\tPASS\tFAIL",
+        "renderedErrors": []
+      },
+      "tests": [
+        {
+          "title": "Start serves real HTML and hydration preserves the server DOM node",
+          "status": "passed"
+        },
+        {
+          "title": "federation loads three real HTTP remote entries and exposes runtime identity",
+          "status": "passed"
+        },
+        {
+          "title": "hooks, host context, remote callbacks, portals and remounts work across boundaries",
+          "status": "passed"
+        },
+        {
+          "title": "Suspense fallback remains visible while a remote HTTP request is delayed",
+          "status": "passed"
+        },
+        {
+          "title": "a failed remote is contained and the other two remain interactive",
+          "status": "passed"
+        },
+        {
+          "title": "default aliases produce distinct exports even when the tested interactions work",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "name": "redact-shared",
+      "identity": {
+        "scenario": "redact-shared",
+        "hostURL": "http://localhost:4100/",
+        "testedAt": "2026-10-27T14:54:37.989Z",
+        "node": "v24.19.0",
+        "browser": "156.0.8078.4",
+        "remoteOrigins": [
+          "http://localhost:4101",
+          "http://localhost:4102",
+          "http://localhost:4103"
+        ],
+        "identity": "counter\tPASS\tPASS\tPASS\tPASS\t—\ncontext\tPASS\tPASS\tPASS\tPASS\t—\nportal\tPASS\tPASS\tPASS\tPASS\tPASS",
+        "renderedErrors": []
+      },
+      "tests": [
+        {
+          "title": "Start serves real HTML and hydration preserves the server DOM node",
+          "status": "passed"
+        },
+        {
+          "title": "federation loads three real HTTP remote entries and exposes runtime identity",
+          "status": "passed"
+        },
+        {
+          "title": "hooks, host context, remote callbacks, portals and remounts work across boundaries",
+          "status": "passed"
+        },
+        {
+          "title": "Suspense fallback remains visible while a remote HTTP request is delayed",
+          "status": "passed"
+        },
+        {
+          "title": "a failed remote is contained and the other two remain interactive",
+          "status": "passed"
+        },
+        {
+          "title": "default aliases produce distinct exports even when the tested interactions work",
+          "status": "skipped"
+        }
+      ]
+    },
+    {
+      "name": "zephyr-live",
+      "identity": {
+        "scenario": "redact-shared",
+        "hostURL": "https://beierkevin-68-start-host-redact-mf-lab-kevin-beie-5322a365b-ze.zephyrcloud.app/",
+        "testedAt": "2026-10-27T14:54:45.211Z",
+        "node": "v24.19.0",
+        "browser": "156.0.8078.4",
+        "remoteOrigins": [
+          "https://beierkevin-65-counter-redact-mf-lab-kevin-beier-2e590a0a3-ze.zephyrcloud.app",
+          "https://beierkevin-66-context-redact-mf-lab-kevin-beier-537e07da8-ze.zephyrcloud.app",
+          "https://beierkevin-67-portal-redact-mf-lab-kevin-beier-a9bcfb063-ze.zephyrcloud.app"
+        ],
+        "identity": "counter\tPASS\tPASS\tPASS\tPASS\t—\ncontext\tPASS\tPASS\tPASS\tPASS\t—\nportal\tPASS\tPASS\tPASS\tPASS\tPASS",
+        "renderedErrors": []
+      },
+      "tests": [
+        {
+          "title": "Start serves real HTML and hydration preserves the server DOM node",
+          "status": "passed"
+        },
+        {
+          "title": "federation loads three real HTTP remote entries and exposes runtime identity",
+          "status": "passed"
+        },
+        {
+          "title": "hooks, host context, remote callbacks, portals and remounts work across boundaries",
+          "status": "passed"
+        },
+        {
+          "title": "Suspense fallback remains visible while a remote HTTP request is delayed",
+          "status": "passed"
+        },
+        {
+          "title": "a failed remote is contained and the other two remain interactive",
+          "status": "passed"
+        },
+        {
+          "title": "default aliases produce distinct exports even when the tested interactions work",
+          "status": "skipped"
+        }
+      ]
+    }
+  ],
+  "bundles": {
+    "method": "Sum of gzipSync per emitted JS/CSS file; host client only, all three remote outputs. Excludes server, fonts, maps, JSON and HTML. Build output totals, not measured network transfer or rendering performance.",
+    "scenarios": [
+      {
+        "scenario": "react",
+        "apps": [
+          {
+            "app": "host",
+            "bytes": 427468,
+            "gzipBytes": 135262,
+            "files": [
+              {
+                "file": "assets/federation-Eu3jOE7x.js",
+                "bytes": 70755,
+                "gzipBytes": 21099
+              },
+              {
+                "file": "assets/index-BZnbE7hd.css",
+                "bytes": 7391,
+                "gzipBytes": 2204
+              },
+              {
+                "file": "assets/index-ElsTBBss.js",
+                "bytes": 341179,
+                "gzipBytes": 108979
+              },
+              {
+                "file": "assets/routes-qG4laI_8.js",
+                "bytes": 8143,
+                "gzipBytes": 2980
+              }
+            ]
+          },
+          {
+            "app": "counter",
+            "bytes": 101715,
+            "gzipBytes": 32390,
+            "files": [
+              {
+                "file": "assets/dist-C5M3fhBw.js",
+                "bytes": 298,
+                "gzipBytes": 225
+              },
+              {
+                "file": "assets/helpers-oIxDNnZJ.js",
+                "bytes": 88,
+                "gzipBytes": 102
+              },
+              {
+                "file": "assets/hostInit-Bkuyv7Os.js",
+                "bytes": 5190,
+                "gzipBytes": 2209
+              },
+              {
+                "file": "assets/pendingShares-CCUrwjwA.js",
+                "bytes": 1485,
+                "gzipBytes": 834
+              },
+              {
+                "file": "assets/utils-v9GZlbdk.js",
+                "bytes": 65491,
+                "gzipBytes": 19229
+              },
+              {
+                "file": "assets/vite-preload-helper-BLdHbfdN.js",
+                "bytes": 1557,
+                "gzipBytes": 812
+              },
+              {
+                "file": "assets/Widget-CEiWsqvo.js",
+                "bytes": 5327,
+                "gzipBytes": 1447
+              },
+              {
+                "file": "assets/_virtual_mf-localSharedImportMap___mfe_internal__counter__mf_owner__1-BAjV9F4x.js",
+                "bytes": 1127,
+                "gzipBytes": 479
+              },
+              {
+                "file": "remoteEntry.js",
+                "bytes": 21152,
+                "gzipBytes": 7053
+              }
+            ]
+          },
+          {
+            "app": "context",
+            "bytes": 101515,
+            "gzipBytes": 32301,
+            "files": [
+              {
+                "file": "assets/dist-C5M3fhBw.js",
+                "bytes": 298,
+                "gzipBytes": 225
+              },
+              {
+                "file": "assets/helpers-oIxDNnZJ.js",
+                "bytes": 88,
+                "gzipBytes": 102
+              },
+              {
+                "file": "assets/hostInit-a_E2MJP_.js",
+                "bytes": 5190,
+                "gzipBytes": 2207
+              },
+              {
+                "file": "assets/pendingShares-BqjrQnUY.js",
+                "bytes": 1485,
+                "gzipBytes": 834
+              },
+              {
+                "file": "assets/utils-v9GZlbdk.js",
+                "bytes": 65491,
+                "gzipBytes": 19229
+              },
+              {
+                "file": "assets/vite-preload-helper-BLdHbfdN.js",
+                "bytes": 1557,
+                "gzipBytes": 812
+              },
+              {
+                "file": "assets/Widget-y1RBLS8V.js",
+                "bytes": 5127,
+                "gzipBytes": 1362
+              },
+              {
+                "file": "assets/_virtual_mf-localSharedImportMap___mfe_internal__context__mf_owner__1-DBp0Ft5h.js",
+                "bytes": 1127,
+                "gzipBytes": 479
+              },
+              {
+                "file": "remoteEntry.js",
+                "bytes": 21152,
+                "gzipBytes": 7051
+              }
+            ]
+          },
+          {
+            "app": "portal",
+            "bytes": 103447,
+            "gzipBytes": 32655,
+            "files": [
+              {
+                "file": "assets/dist-C5M3fhBw.js",
+                "bytes": 298,
+                "gzipBytes": 225
+              },
+              {
+                "file": "assets/helpers-oIxDNnZJ.js",
+                "bytes": 88,
+                "gzipBytes": 102
+              },
+              {
+                "file": "assets/hostInit-o51WSuw1.js",
+                "bytes": 5186,
+                "gzipBytes": 2206
+              },
+              {
+                "file": "assets/pendingShares-Dbycodf1.js",
+                "bytes": 1484,
+                "gzipBytes": 833
+              },
+              {
+                "file": "assets/utils-v9GZlbdk.js",
+                "bytes": 65491,
+                "gzipBytes": 19229
+              },
+              {
+                "file": "assets/vite-preload-helper-BLdHbfdN.js",
+                "bytes": 1557,
+                "gzipBytes": 812
+              },
+              {
+                "file": "assets/Widget-oRqMi1Dn.js",
+                "bytes": 7069,
+                "gzipBytes": 1719
+              },
+              {
+                "file": "assets/_virtual_mf-localSharedImportMap___mfe_internal__portal__mf_owner__1-CfBCeW4g.js",
+                "bytes": 1126,
+                "gzipBytes": 478
+              },
+              {
+                "file": "remoteEntry.js",
+                "bytes": 21148,
+                "gzipBytes": 7051
+              }
+            ]
+          }
+        ],
+        "totalGzipBytes": 232608
+      },
+      {
+        "scenario": "redact-naive",
+        "apps": [
+          {
+            "app": "host",
+            "bytes": 267586,
+            "gzipBytes": 91050,
+            "files": [
+              {
+                "file": "assets/federation-BhECyvax.js",
+                "bytes": 73767,
+                "gzipBytes": 22331
+              },
+              {
+                "file": "assets/index-BZnbE7hd.css",
+                "bytes": 7391,
+                "gzipBytes": 2204
+              },
+              {
+                "file": "assets/index-CnS9gliw.js",
+                "bytes": 174061,
+                "gzipBytes": 61463
+              },
+              {
+                "file": "assets/jsx-runtime-yeIm8NIz.js",
+                "bytes": 4810,
+                "gzipBytes": 1928
+              },
+              {
+                "file": "assets/rolldown-runtime-DK3Fl9T5.js",
+                "bytes": 158,
+                "gzipBytes": 154
+              },
+              {
+                "file": "assets/routes-LLvOzfZG.js",
+                "bytes": 7399,
+                "gzipBytes": 2970
+              }
+            ]
+          },
+          {
+            "app": "counter",
+            "bytes": 99558,
+            "gzipBytes": 32343,
+            "files": [
+              {
+                "file": "assets/dist-C5M3fhBw.js",
+                "bytes": 298,
+                "gzipBytes": 225
+              },
+              {
+                "file": "assets/helpers-oIxDNnZJ.js",
+                "bytes": 88,
+                "gzipBytes": 102
+              },
+              {
+                "file": "assets/hostInit-BfgD9UOT.js",
+                "bytes": 5190,
+                "gzipBytes": 2206
+              },
+              {
+                "file": "assets/pendingShares-CiqOSGnc.js",
+                "bytes": 1485,
+                "gzipBytes": 831
+              },
+              {
+                "file": "assets/utils-v9GZlbdk.js",
+                "bytes": 65491,
+                "gzipBytes": 19229
+              },
+              {
+                "file": "assets/vite-preload-helper-BLdHbfdN.js",
+                "bytes": 1557,
+                "gzipBytes": 812
+              },
+              {
+                "file": "assets/Widget-l5yjLmx5.js",
+                "bytes": 3176,
+                "gzipBytes": 1407
+              },
+              {
+                "file": "assets/_virtual_mf-localSharedImportMap___mfe_internal__counter__mf_owner__1-CTFnoXhs.js",
+                "bytes": 1122,
+                "gzipBytes": 478
+              },
+              {
+                "file": "remoteEntry.js",
+                "bytes": 21151,
+                "gzipBytes": 7053
+              }
+            ]
+          },
+          {
+            "app": "context",
+            "bytes": 99339,
+            "gzipBytes": 32259,
+            "files": [
+              {
+                "file": "assets/dist-C5M3fhBw.js",
+                "bytes": 298,
+                "gzipBytes": 225
+              },
+              {
+                "file": "assets/helpers-oIxDNnZJ.js",
+                "bytes": 88,
+                "gzipBytes": 102
+              },
+              {
+                "file": "assets/hostInit-C6AGlwPl.js",
+                "bytes": 5190,
+                "gzipBytes": 2208
+              },
+              {
+                "file": "assets/pendingShares-CPYr3YeR.js",
+                "bytes": 1485,
+                "gzipBytes": 833
+              },
+              {
+                "file": "assets/utils-v9GZlbdk.js",
+                "bytes": 65491,
+                "gzipBytes": 19229
+              },
+              {
+                "file": "assets/vite-preload-helper-BLdHbfdN.js",
+                "bytes": 1557,
+                "gzipBytes": 812
+              },
+              {
+                "file": "assets/Widget-Dip_Bw5f.js",
+                "bytes": 2957,
+                "gzipBytes": 1321
+              },
+              {
+                "file": "assets/_virtual_mf-localSharedImportMap___mfe_internal__context__mf_owner__1-D0kF-xXC.js",
+                "bytes": 1122,
+                "gzipBytes": 478
+              },
+              {
+                "file": "remoteEntry.js",
+                "bytes": 21151,
+                "gzipBytes": 7051
+              }
+            ]
+          },
+          {
+            "app": "portal",
+            "bytes": 142823,
+            "gzipBytes": 49048,
+            "files": [
+              {
+                "file": "assets/dist-C5M3fhBw.js",
+                "bytes": 298,
+                "gzipBytes": 225
+              },
+              {
+                "file": "assets/helpers-oIxDNnZJ.js",
+                "bytes": 88,
+                "gzipBytes": 102
+              },
+              {
+                "file": "assets/hostInit-BYQniYnj.js",
+                "bytes": 5186,
+                "gzipBytes": 2206
+              },
+              {
+                "file": "assets/pendingShares-COCV31im.js",
+                "bytes": 1484,
+                "gzipBytes": 832
+              },
+              {
+                "file": "assets/utils-v9GZlbdk.js",
+                "bytes": 65491,
+                "gzipBytes": 19229
+              },
+              {
+                "file": "assets/vite-preload-helper-BLdHbfdN.js",
+                "bytes": 1557,
+                "gzipBytes": 812
+              },
+              {
+                "file": "assets/Widget-DJ0pn9oI.js",
+                "bytes": 46450,
+                "gzipBytes": 18112
+              },
+              {
+                "file": "assets/_virtual_mf-localSharedImportMap___mfe_internal__portal__mf_owner__1-DVewaFYS.js",
+                "bytes": 1121,
+                "gzipBytes": 477
+              },
+              {
+                "file": "remoteEntry.js",
+                "bytes": 21148,
+                "gzipBytes": 7053
+              }
+            ]
+          }
+        ],
+        "totalGzipBytes": 204700
+      },
+      {
+        "scenario": "redact-shared",
+        "apps": [
+          {
+            "app": "host",
+            "bytes": 267587,
+            "gzipBytes": 91050,
+            "files": [
+              {
+                "file": "assets/federation-ByeUVWvv.js",
+                "bytes": 73767,
+                "gzipBytes": 22331
+              },
+              {
+                "file": "assets/index-BZnbE7hd.css",
+                "bytes": 7391,
+                "gzipBytes": 2204
+              },
+              {
+                "file": "assets/index-CHuYauWY.js",
+                "bytes": 174061,
+                "gzipBytes": 61462
+              },
+              {
+                "file": "assets/jsx-runtime-yeIm8NIz.js",
+                "bytes": 4810,
+                "gzipBytes": 1928
+              },
+              {
+                "file": "assets/rolldown-runtime-DK3Fl9T5.js",
+                "bytes": 158,
+                "gzipBytes": 154
+              },
+              {
+                "file": "assets/routes-Di5BrK1y.js",
+                "bytes": 7400,
+                "gzipBytes": 2971
+              }
+            ]
+          },
+          {
+            "app": "counter",
+            "bytes": 101706,
+            "gzipBytes": 32379,
+            "files": [
+              {
+                "file": "assets/dist-C5M3fhBw.js",
+                "bytes": 298,
+                "gzipBytes": 225
+              },
+              {
+                "file": "assets/helpers-oIxDNnZJ.js",
+                "bytes": 88,
+                "gzipBytes": 102
+              },
+              {
+                "file": "assets/hostInit-BfgD9UOT.js",
+                "bytes": 5190,
+                "gzipBytes": 2206
+              },
+              {
+                "file": "assets/pendingShares-CiqOSGnc.js",
+                "bytes": 1485,
+                "gzipBytes": 831
+              },
+              {
+                "file": "assets/utils-v9GZlbdk.js",
+                "bytes": 65491,
+                "gzipBytes": 19229
+              },
+              {
+                "file": "assets/vite-preload-helper-BLdHbfdN.js",
+                "bytes": 1557,
+                "gzipBytes": 812
+              },
+              {
+                "file": "assets/Widget-D7CinsvZ.js",
+                "bytes": 5324,
+                "gzipBytes": 1446
+              },
+              {
+                "file": "assets/_virtual_mf-localSharedImportMap___mfe_internal__counter__mf_owner__1-CTFnoXhs.js",
+                "bytes": 1122,
+                "gzipBytes": 478
+              },
+              {
+                "file": "remoteEntry.js",
+                "bytes": 21151,
+                "gzipBytes": 7050
+              }
+            ]
+          },
+          {
+            "app": "context",
+            "bytes": 101506,
+            "gzipBytes": 32299,
+            "files": [
+              {
+                "file": "assets/dist-C5M3fhBw.js",
+                "bytes": 298,
+                "gzipBytes": 225
+              },
+              {
+                "file": "assets/helpers-oIxDNnZJ.js",
+                "bytes": 88,
+                "gzipBytes": 102
+              },
+              {
+                "file": "assets/hostInit-C6AGlwPl.js",
+                "bytes": 5190,
+                "gzipBytes": 2208
+              },
+              {
+                "file": "assets/pendingShares-CPYr3YeR.js",
+                "bytes": 1485,
+                "gzipBytes": 833
+              },
+              {
+                "file": "assets/utils-v9GZlbdk.js",
+                "bytes": 65491,
+                "gzipBytes": 19229
+              },
+              {
+                "file": "assets/vite-preload-helper-BLdHbfdN.js",
+                "bytes": 1557,
+                "gzipBytes": 812
+              },
+              {
+                "file": "assets/Widget-BaXhiPE0.js",
+                "bytes": 5124,
+                "gzipBytes": 1361
+              },
+              {
+                "file": "assets/_virtual_mf-localSharedImportMap___mfe_internal__context__mf_owner__1-D0kF-xXC.js",
+                "bytes": 1122,
+                "gzipBytes": 478
+              },
+              {
+                "file": "remoteEntry.js",
+                "bytes": 21151,
+                "gzipBytes": 7051
+              }
+            ]
+          },
+          {
+            "app": "portal",
+            "bytes": 103442,
+            "gzipBytes": 32657,
+            "files": [
+              {
+                "file": "assets/dist-C5M3fhBw.js",
+                "bytes": 298,
+                "gzipBytes": 225
+              },
+              {
+                "file": "assets/helpers-oIxDNnZJ.js",
+                "bytes": 88,
+                "gzipBytes": 102
+              },
+              {
+                "file": "assets/hostInit-BYQniYnj.js",
+                "bytes": 5186,
+                "gzipBytes": 2206
+              },
+              {
+                "file": "assets/pendingShares-COCV31im.js",
+                "bytes": 1484,
+                "gzipBytes": 832
+              },
+              {
+                "file": "assets/utils-v9GZlbdk.js",
+                "bytes": 65491,
+                "gzipBytes": 19229
+              },
+              {
+                "file": "assets/vite-preload-helper-BLdHbfdN.js",
+                "bytes": 1557,
+                "gzipBytes": 812
+              },
+              {
+                "file": "assets/Widget-DSCQ867u.js",
+                "bytes": 7069,
+                "gzipBytes": 1719
+              },
+              {
+                "file": "assets/_virtual_mf-localSharedImportMap___mfe_internal__portal__mf_owner__1-DVewaFYS.js",
+                "bytes": 1121,
+                "gzipBytes": 477
+              },
+              {
+                "file": "remoteEntry.js",
+                "bytes": 21148,
+                "gzipBytes": 7055
+              }
+            ]
+          }
+        ],
+        "totalGzipBytes": 188385
+      }
+    ]
+  }
+}

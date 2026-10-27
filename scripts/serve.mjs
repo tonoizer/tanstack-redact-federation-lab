@@ -2,8 +2,9 @@ import { createServer } from 'node:http'
 import { readFile } from 'node:fs/promises'
 import { resolve, extname, sep } from 'node:path'
 import { preview } from 'vite'
+import scenarios from '../shared/scenarios.json' with { type: 'json' }
 const scenario = process.argv[2] ?? 'redact-shared'
-if (!['react', 'redact-naive', 'redact-shared'].includes(scenario)) throw new Error(`Unknown scenario: ${scenario}`)
+if (!scenarios.includes(scenario)) throw new Error(`Unknown scenario: ${scenario}`)
 process.env.LAB_SCENARIO = scenario
 const servers = []
 for (const [index, name] of ['counter', 'context', 'portal'].entries()) {

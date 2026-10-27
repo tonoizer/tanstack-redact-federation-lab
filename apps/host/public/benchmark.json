@@ -1,0 +1,575 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-27T17:06:44.639Z",
+  "completedAt": "2026-10-27T17:07:30.913Z",
+  "sourceCommit": "2954d228edf3c1b20f55b57d67bb27a677b91da7",
+  "environment": {
+    "node": "v24.19.0",
+    "chromium": "156.0.8078.4",
+    "os": "win32 10.0.26300",
+    "cpu": "AMD Ryzen 5 5600X 6-Core Processor             ",
+    "logicalCpus": 12
+  },
+  "methodology": {
+    "rounds": 3,
+    "profiles": [
+      {
+        "name": "loopback",
+        "cpuRate": 1,
+        "latency": 0,
+        "downloadThroughput": -1,
+        "uploadThroughput": -1
+      },
+      {
+        "name": "constrained",
+        "cpuRate": 4,
+        "latency": 40,
+        "downloadThroughput": 1250000,
+        "uploadThroughput": 625000
+      }
+    ],
+    "browser": "Fresh Chromium context per sample; cache disabled; service workers blocked; gzip HTTP loopback server for every variant.",
+    "order": "Scenario order rotates by round; no discarded warmups; each sample starts a fresh server child process. OS/filesystem cache is shared. Cold refers to browser cache, not cold OS/disk/edge.",
+    "readiness": "performance.now() at first animation frame with all three remote DOM nodes and the counter effect mounted; excludes Playwright wait overhead.",
+    "interaction": "12 programmatic context-remote button clicks per page, each followed by two animation frames and sibling DOM validation; includes frame scheduling. Not INP or real input latency.",
+    "transfer": "CDP Network.loadingFinished.encodedDataLength for requested Script/Stylesheet resources; gzip and HTTP 200 asserted. Includes response headers; excludes document/fonts/data. All-resource totals are separate.",
+    "build": "Sum of gzip/Brotli per emitted JS/CSS file, host client and three remotes. Includes unrequested chunks; excludes server/fonts/JSON/HTML/maps.",
+    "scope": "Local reproducible synthetic benchmark, not Zephyr network performance or a universal speedup. No timing pass/fail thresholds."
+  },
+  "summary": [
+    {
+      "scenario": "react",
+      "profile": "loopback",
+      "runs": 3,
+      "remoteReadyMs": {
+        "min": 204.30000000447035,
+        "p25": 206.5000000037253,
+        "median": 208.70000000298023,
+        "p75": 217.0000000037253,
+        "max": 225.30000000447035
+      },
+      "fcpMs": {
+        "min": 112,
+        "p25": 112,
+        "median": 112,
+        "p75": 114,
+        "max": 116
+      },
+      "updateMs": {
+        "min": 4.899999998509884,
+        "p25": 32.70000000111759,
+        "median": 33,
+        "p75": 33.70000000298023,
+        "max": 35.100000001490116
+      },
+      "jsCssTransferBytes": {
+        "min": 232907,
+        "p25": 232907,
+        "median": 232907,
+        "p75": 232907,
+        "max": 232907
+      },
+      "jsCssRequests": {
+        "min": 25,
+        "p25": 25,
+        "median": 25,
+        "p75": 25,
+        "max": 25
+      },
+      "allResourceTransferBytes": {
+        "min": 599930,
+        "p25": 599930,
+        "median": 599930,
+        "p75": 599930.5,
+        "max": 599931
+      },
+      "longTaskMs": {
+        "min": 51,
+        "p25": 52.5,
+        "median": 54,
+        "p75": 54,
+        "max": 54
+      }
+    },
+    {
+      "scenario": "redact-naive",
+      "profile": "loopback",
+      "runs": 3,
+      "remoteReadyMs": {
+        "min": 180.19999999552965,
+        "p25": 180.19999999925494,
+        "median": 180.20000000298023,
+        "p75": 186.14999999850988,
+        "max": 192.09999999403954
+      },
+      "fcpMs": {
+        "min": 100,
+        "p25": 108,
+        "median": 116,
+        "p75": 118,
+        "max": 120
+      },
+      "updateMs": {
+        "min": 9.200000002980232,
+        "p25": 32.975000001490116,
+        "median": 33.100000001490116,
+        "p75": 33.725000001490116,
+        "max": 34.600000001490116
+      },
+      "jsCssTransferBytes": {
+        "min": 205493,
+        "p25": 205493,
+        "median": 205493,
+        "p75": 205493,
+        "max": 205493
+      },
+      "jsCssRequests": {
+        "min": 27,
+        "p25": 27,
+        "median": 27,
+        "p75": 27,
+        "max": 27
+      },
+      "allResourceTransferBytes": {
+        "min": 572561,
+        "p25": 572561,
+        "median": 572561,
+        "p75": 572561,
+        "max": 572561
+      },
+      "longTaskMs": {
+        "min": 51,
+        "p25": 51.5,
+        "median": 52,
+        "p75": 52,
+        "max": 52
+      }
+    },
+    {
+      "scenario": "redact-shared",
+      "profile": "loopback",
+      "runs": 3,
+      "remoteReadyMs": {
+        "min": 180.29999999701977,
+        "p25": 180.59999999776483,
+        "median": 180.89999999850988,
+        "p75": 186.15000000223517,
+        "max": 191.40000000596046
+      },
+      "fcpMs": {
+        "min": 96,
+        "p25": 98,
+        "median": 100,
+        "p75": 108,
+        "max": 116
+      },
+      "updateMs": {
+        "min": 1.8000000044703484,
+        "p25": 32.875,
+        "median": 33.149999998509884,
+        "p75": 33.65000000037253,
+        "max": 35.20000000298023
+      },
+      "jsCssTransferBytes": {
+        "min": 189180,
+        "p25": 189180,
+        "median": 189180,
+        "p75": 189180,
+        "max": 189180
+      },
+      "jsCssRequests": {
+        "min": 27,
+        "p25": 27,
+        "median": 27,
+        "p75": 27,
+        "max": 27
+      },
+      "allResourceTransferBytes": {
+        "min": 556246,
+        "p25": 556246,
+        "median": 556246,
+        "p75": 556246.5,
+        "max": 556247
+      },
+      "longTaskMs": {
+        "min": 50,
+        "p25": 50.5,
+        "median": 51,
+        "p75": 55,
+        "max": 59
+      }
+    },
+    {
+      "scenario": "redact-optimized",
+      "profile": "loopback",
+      "runs": 3,
+      "remoteReadyMs": {
+        "min": 168.10000000149012,
+        "p25": 172.80000000074506,
+        "median": 177.5,
+        "p75": 177.94999999925494,
+        "max": 178.39999999850988
+      },
+      "fcpMs": {
+        "min": 96,
+        "p25": 98,
+        "median": 100,
+        "p75": 104,
+        "max": 108
+      },
+      "updateMs": {
+        "min": 4.899999998509884,
+        "p25": 33,
+        "median": 33.20000000298023,
+        "p75": 33.750000001862645,
+        "max": 34.19999999552965
+      },
+      "jsCssTransferBytes": {
+        "min": 133838,
+        "p25": 133838,
+        "median": 133838,
+        "p75": 133838,
+        "max": 133838
+      },
+      "jsCssRequests": {
+        "min": 27,
+        "p25": 27,
+        "median": 27,
+        "p75": 27,
+        "max": 27
+      },
+      "allResourceTransferBytes": {
+        "min": 500905,
+        "p25": 500905.5,
+        "median": 500906,
+        "p75": 500906,
+        "max": 500906
+      },
+      "longTaskMs": {
+        "min": 0,
+        "p25": 25,
+        "median": 50,
+        "p75": 50.5,
+        "max": 51
+      }
+    },
+    {
+      "scenario": "react",
+      "profile": "constrained",
+      "runs": 3,
+      "remoteReadyMs": {
+        "min": 1367,
+        "p25": 1381.800000000745,
+        "median": 1396.6000000014901,
+        "p75": 1405.550000000745,
+        "max": 1414.5
+      },
+      "fcpMs": {
+        "min": 488,
+        "p25": 496,
+        "median": 504,
+        "p75": 504,
+        "max": 504
+      },
+      "updateMs": {
+        "min": 7.799999997019768,
+        "p25": 32.100000001490116,
+        "median": 33,
+        "p75": 34,
+        "max": 35
+      },
+      "jsCssTransferBytes": {
+        "min": 232907,
+        "p25": 232907,
+        "median": 232907,
+        "p75": 232907,
+        "max": 232907
+      },
+      "jsCssRequests": {
+        "min": 25,
+        "p25": 25,
+        "median": 25,
+        "p75": 25,
+        "max": 25
+      },
+      "allResourceTransferBytes": {
+        "min": 599930,
+        "p25": 599930,
+        "median": 599930,
+        "p75": 599930.5,
+        "max": 599931
+      },
+      "longTaskMs": {
+        "min": 510,
+        "p25": 513,
+        "median": 516,
+        "p75": 518,
+        "max": 520
+      }
+    },
+    {
+      "scenario": "redact-naive",
+      "profile": "constrained",
+      "runs": 3,
+      "remoteReadyMs": {
+        "min": 1221.8999999985099,
+        "p25": 1242.7999999970198,
+        "median": 1263.6999999955297,
+        "p75": 1283.449999999255,
+        "max": 1303.2000000029802
+      },
+      "fcpMs": {
+        "min": 488,
+        "p25": 490,
+        "median": 492,
+        "p75": 494,
+        "max": 496
+      },
+      "updateMs": {
+        "min": 10.099999994039536,
+        "p25": 32.77500000409782,
+        "median": 33.100000001490116,
+        "p75": 34,
+        "max": 35.100000001490116
+      },
+      "jsCssTransferBytes": {
+        "min": 205493,
+        "p25": 205493,
+        "median": 205493,
+        "p75": 205493,
+        "max": 205493
+      },
+      "jsCssRequests": {
+        "min": 27,
+        "p25": 27,
+        "median": 27,
+        "p75": 27,
+        "max": 27
+      },
+      "allResourceTransferBytes": {
+        "min": 572560,
+        "p25": 572560,
+        "median": 572560,
+        "p75": 572560.5,
+        "max": 572561
+      },
+      "longTaskMs": {
+        "min": 453,
+        "p25": 471,
+        "median": 489,
+        "p75": 492.5,
+        "max": 496
+      }
+    },
+    {
+      "scenario": "redact-shared",
+      "profile": "constrained",
+      "runs": 3,
+      "remoteReadyMs": {
+        "min": 1204.8000000044703,
+        "p25": 1219.2000000029802,
+        "median": 1233.6000000014901,
+        "p75": 1236.6000000014901,
+        "max": 1239.6000000014901
+      },
+      "fcpMs": {
+        "min": 488,
+        "p25": 488,
+        "median": 488,
+        "p75": 492,
+        "max": 496
+      },
+      "updateMs": {
+        "min": 10.099999994039536,
+        "p25": 32.875,
+        "median": 33.19999999552965,
+        "p75": 33.899999998509884,
+        "max": 35.19999999552965
+      },
+      "jsCssTransferBytes": {
+        "min": 189180,
+        "p25": 189180,
+        "median": 189180,
+        "p75": 189180,
+        "max": 189180
+      },
+      "jsCssRequests": {
+        "min": 27,
+        "p25": 27,
+        "median": 27,
+        "p75": 27,
+        "max": 27
+      },
+      "allResourceTransferBytes": {
+        "min": 556246,
+        "p25": 556246.5,
+        "median": 556247,
+        "p75": 556247,
+        "max": 556247
+      },
+      "longTaskMs": {
+        "min": 495,
+        "p25": 495.5,
+        "median": 496,
+        "p75": 497,
+        "max": 498
+      }
+    },
+    {
+      "scenario": "redact-optimized",
+      "profile": "constrained",
+      "runs": 3,
+      "remoteReadyMs": {
+        "min": 1241.1000000014901,
+        "p25": 1245.949999999255,
+        "median": 1250.7999999970198,
+        "p75": 1267.8499999977648,
+        "max": 1284.8999999985099
+      },
+      "fcpMs": {
+        "min": 492,
+        "p25": 494,
+        "median": 496,
+        "p75": 496,
+        "max": 496
+      },
+      "updateMs": {
+        "min": 10.099999994039536,
+        "p25": 32.899999998509884,
+        "median": 33.100000001490116,
+        "p75": 33.8249999973923,
+        "max": 34.899999998509884
+      },
+      "jsCssTransferBytes": {
+        "min": 133838,
+        "p25": 133838,
+        "median": 133838,
+        "p75": 133838,
+        "max": 133838
+      },
+      "jsCssRequests": {
+        "min": 27,
+        "p25": 27,
+        "median": 27,
+        "p75": 27,
+        "max": 27
+      },
+      "allResourceTransferBytes": {
+        "min": 500905,
+        "p25": 500905.5,
+        "median": 500906,
+        "p75": 500906,
+        "max": 500906
+      },
+      "longTaskMs": {
+        "min": 458,
+        "p25": 476.5,
+        "median": 495,
+        "p75": 497,
+        "max": 499
+      }
+    }
+  ],
+  "builds": [
+    {
+      "scenario": "react",
+      "apps": [
+        {
+          "app": "host",
+          "gzipBytes": 138197,
+          "brotliBytes": 120170
+        },
+        {
+          "app": "counter",
+          "gzipBytes": 32390,
+          "brotliBytes": 28839
+        },
+        {
+          "app": "context",
+          "gzipBytes": 32301,
+          "brotliBytes": 28759
+        },
+        {
+          "app": "portal",
+          "gzipBytes": 32655,
+          "brotliBytes": 29049
+        }
+      ]
+    },
+    {
+      "scenario": "redact-naive",
+      "apps": [
+        {
+          "app": "host",
+          "gzipBytes": 93953,
+          "brotliBytes": 83599
+        },
+        {
+          "app": "counter",
+          "gzipBytes": 32343,
+          "brotliBytes": 28862
+        },
+        {
+          "app": "context",
+          "gzipBytes": 32259,
+          "brotliBytes": 28772
+        },
+        {
+          "app": "portal",
+          "gzipBytes": 49048,
+          "brotliBytes": 44126
+        }
+      ]
+    },
+    {
+      "scenario": "redact-shared",
+      "apps": [
+        {
+          "app": "host",
+          "gzipBytes": 93956,
+          "brotliBytes": 83619
+        },
+        {
+          "app": "counter",
+          "gzipBytes": 32379,
+          "brotliBytes": 28849
+        },
+        {
+          "app": "context",
+          "gzipBytes": 32299,
+          "brotliBytes": 28764
+        },
+        {
+          "app": "portal",
+          "gzipBytes": 32657,
+          "brotliBytes": 29055
+        }
+      ]
+    },
+    {
+      "scenario": "redact-optimized",
+      "apps": [
+        {
+          "app": "host",
+          "gzipBytes": 93912,
+          "brotliBytes": 83627
+        },
+        {
+          "app": "counter",
+          "gzipBytes": 13949,
+          "brotliBytes": 12435
+        },
+        {
+          "app": "context",
+          "gzipBytes": 13867,
+          "brotliBytes": 12343
+        },
+        {
+          "app": "portal",
+          "gzipBytes": 14226,
+          "brotliBytes": 12629
+        }
+      ]
+    }
+  ]
+}

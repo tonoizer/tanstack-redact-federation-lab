@@ -1,6 +1,6 @@
 import { spawnSync } from 'node:child_process'
 import { mkdirSync, writeFileSync } from 'node:fs'
-const scenarios = ['react', 'redact-naive', 'redact-shared']
+import scenarios from '../shared/scenarios.json' with { type: 'json' }
 const selected = process.argv[2] ?? 'redact-shared'
 if (selected !== 'all' && !scenarios.includes(selected)) throw new Error(`Unknown scenario: ${selected}`)
 for (const scenario of selected === 'all' ? scenarios : [selected]) {

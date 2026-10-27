@@ -4,6 +4,7 @@ import * as ReactDOMClient from 'react-dom/client'
 import * as JSX from 'react/jsx-runtime'
 import * as Contract from '@lab/contract'
 import { createInstance } from '@module-federation/enhanced/runtime'
+import { plugins } from '@lab/runtime-provider'
 import type { ComponentType } from 'react'
 
 const modules = {
@@ -16,8 +17,10 @@ const modules = {
 }
 
 // Runtime API keeps federation client-only and out of Start's server module graph.
+// The optimized build's provider publishes runtime-core before any remote evaluates.
 export const mf = createInstance({
   name: 'start_host',
+  plugins,
   remotes: Object.entries(__LAB_REMOTES__).map(([name, entry]) => ({
     name, entry, type: 'module',
   })),

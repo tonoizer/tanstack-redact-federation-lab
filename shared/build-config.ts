@@ -5,12 +5,14 @@ import { federation } from '@module-federation/vite'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 import { withZephyr } from 'vite-plugin-zephyr'
+import scenarioNames from './scenarios.json' with { type: 'json' }
 
 export const repoRoot = fileURLToPath(new URL('../', import.meta.url))
-export const scenarios = ['react', 'redact-naive', 'redact-shared'] as const
-export type Scenario = typeof scenarios[number]
+export const scenarios = scenarioNames
+export type Scenario = 'react' | 'redact-naive' | 'redact-shared' | 'redact-optimized'
 export const scenario = (process.env.LAB_SCENARIO ?? 'redact-shared') as Scenario
 export const deploy = process.env.LAB_DEPLOY === '1'
+export const optimized = scenario === 'redact-optimized'
 if (!scenarios.includes(scenario)) throw new Error(`Unknown scenario: ${scenario}`)
 export const reactEntries = ['react', 'react/jsx-runtime', 'react/jsx-dev-runtime', 'react-dom', 'react-dom/client']
 
@@ -21,7 +23,7 @@ export function remoteConfig(name: string, port: number) {
       react(),
       ...(scenario === 'react' ? [] : [redact({
         // Let federation intercept these names before they become local file paths.
-        skip: scenario === 'redact-shared' ? reactEntries : [],
+        skip: scenario === 'redact-shared' || optimized ? reactEntries : [],
       })]),
       federation({
         name,
@@ -39,6 +41,7 @@ export function remoteConfig(name: string, port: number) {
         ]),
         dts: false,
         manifest: true,
+        ...(optimized ? { experiments: { externalRuntime: true }, disableSnapshot: true } : {}),
       }),
       ...(deploy ? withZephyr() : []),
     ],

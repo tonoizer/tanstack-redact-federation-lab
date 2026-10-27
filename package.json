@@ -17,7 +17,8 @@
     "typecheck": "tsc --noEmit",
     "verify": "node scripts/verify.mjs",
     "deploy": "node scripts/deploy.mjs",
-    "verify:live": "node scripts/verify-live.mjs"
+    "verify:live": "node scripts/verify-live.mjs",
+    "benchmark": "node scripts/benchmark.mjs"
   },
   "dependencies": {
     "@module-federation/enhanced": "2.9.2",
