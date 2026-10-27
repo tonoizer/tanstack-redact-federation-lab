@@ -56,12 +56,14 @@ npm run deploy -- host
 npm run verify:live
 ```
 
+The current deployment target is `redact-optimized`. Deploy all three optimized remotes once before using host-only deployment. The script rejects a host whose recorded remote scenarios do not match, so an older host cannot accidentally consume external-runtime remotes without providing their required runtime.
+
 The host’s deployment build uses Cloudflare’s Vite plugin to produce `dist/zephyr/host/server/index.js` and browser assets. The Start-specific Zephyr adapter uploads both as an SSR snapshot. The remotes are separate static ESM-container snapshots.
 
 Local verification uses Node production preview output under `dist/<scenario>/host`; it does not run the Cloudflare deployment adapter. Live verification checks the deployed Worker plus real remote origins.
 
 ## GitHub Actions
 
-The checked-in workflow verifies the local matrix and uploads evidence. It does not deploy or require a Zephyr secret. Live publication is an explicit `npm run deploy` action. If you later add deployment to CI, configure Zephyr’s recommended CI token in GitHub Secrets rather than checking a token into a file.
+The checked-in workflow verifies the four-build local matrix, the build-provenance guard and a short benchmark, then uploads evidence. It does not deploy or require a Zephyr secret. Live publication is an explicit `npm run deploy` action. If you later add deployment to CI, configure Zephyr’s recommended CI token in GitHub Secrets rather than checking a token into a file.
 
 The Zephyr API MCP can inspect deployment control-plane state, but no Zephyr MCP connection was exposed in the session that created this demo. Publication used the official build SDKs and the existing Zephyr browser account.

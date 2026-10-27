@@ -60,7 +60,7 @@ Remove-Item Env:LAB_BENCH_ROUNDS
 
 Or `LAB_BENCH_ROUNDS=3 npm run benchmark` in a POSIX shell.
 
-The runner writes the full report to `docs/evidence/benchmark.json` and a smaller summary to `apps/host/public/benchmark.json`. It also updates the already-built local host outputs with that summary. Rebuild/deploy the host after recording a new snapshot to publish it. Benchmark pages use `?bench=1` and skip downloading the results payload to avoid including the report itself in its measured downloads.
+The runner writes the full report to `docs/evidence/benchmark.json` and a smaller summary to `apps/host/public/benchmark.json`. It also updates the already-built local host outputs with that summary. Rebuild/deploy the host after recording a new snapshot to publish it. Benchmark pages use `?bench=1` and omit downloading/rendering the results content so the report itself is outside the measured workload. All variants use that same measurement path; normal visitors see the results panel.
 
 ## Profiles and metrics
 
@@ -84,6 +84,10 @@ Both use the same gzip/no-cache HTTP server for every application. These profile
 **FCP and long tasks:** recorded as supporting diagnostics for the initial load. FCP can occur in the SSR shell before any remote is ready. Long-task totals cover the recorded initial-load window, not the later interaction sequence.
 
 The report shows medians and the middle 50% range (25th–75th percentile). Small timing differences on one machine are descriptive and should not be promoted as universal speedups. There are no timing pass/fail thresholds.
+
+## Development attempt history
+
+One earlier development attempt stopped at a 30-second readiness-check timeout in the constrained/default-alias sample, after 37 completed samples. No completed report was produced. That attempt preceded failure snapshots, so its root cause is unknown and is not attributed to either runtime. See [the retained observation](evidence/development-timeout.json). The instrumented harness subsequently completed a full 72-sample attempt. Published medians describe the completed attempt, not a claimed failure rate across all development runs. The runner now saves failure details and aborts instead of silently retrying a sample.
 
 ## How to interpret the benefits
 

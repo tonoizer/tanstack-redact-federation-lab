@@ -1,0 +1,10 @@
+{
+  "status": "aborted-development-attempt",
+  "scenario": "redact-naive",
+  "profile": "constrained",
+  "round": 1,
+  "completedSamplesBeforeAbort": 37,
+  "observation": "The in-page remote-ready condition did not become true within Playwright's 30-second wait. The attempt stopped and did not write a completed benchmark report.",
+  "diagnosticLimit": "This happened before failure snapshots were added to the harness. The browser state and root cause were not captured, so this is not attributed to Redact or Federation.",
+  "handling": "The full attempt was aborted, not retried in place or included in successful-run medians. Failure snapshots and stale-build validation were subsequently added. A subsequent instrumented 72-sample attempt completed successfully. The published final report is a separately recorded full attempt."
+}

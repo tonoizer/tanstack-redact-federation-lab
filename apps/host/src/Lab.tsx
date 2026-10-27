@@ -38,10 +38,10 @@ export function Lab() {
   const status = failures.length ? `Remote load failed: ${failures.join(', ')}` : checks.length < 3 ? 'Checking runtime identity…' : allSame ? 'Same runtime across all remotes' : 'Runtime identity mismatch'
   return <main>
     <header><a className="wordmark" href="/">R/F<span>RUNTIME LAB</span></a><span className="header-note">EXPERIMENT 001 · MODULE FEDERATION</span><a href="https://github.com/tonoizer/tanstack-redact-federation-lab">Source ↗</a></header>
-    <div className="hero"><div><span className="eyebrow">TANSTACK START + THREE INDEPENDENT REMOTES</span><h1>Can we Redact<br />across <em>boundaries?</em></h1><p className="intro">One host. Three origins. A runtime sharing experiment you can inspect, break, and reproduce.</p></div><div className="stamp"><b>3</b><span>REMOTES<br />ONE RENDER TREE</span></div></div>
+    <div className="hero"><div><span className="eyebrow">TANSTACK START + THREE INDEPENDENT REMOTES</span><h1>Can we Redact<br />across <em>boundaries?</em></h1><p className="intro">One host. Three origins. A runtime sharing experiment you can inspect, break, and reproduce.</p><div className="hero-links"><a href="#demo">Try shared state ↓</a><a href="#benchmarks">Compare the numbers ↓</a></div></div><div className="stamp"><b>3</b><span>REMOTES<br />ONE RENDER TREE</span></div></div>
     <Benchmarks />
     <div className="experiment-bar"><span>ACTIVE BUILD <b data-testid="scenario">{__LAB_SCENARIO__}</b></span><span className={allSame ? 'status success' : 'status'} data-testid="identity-status">{status}</span></div>
-    <section className="host-panel"><div><span className="eyebrow">HOST / :4100</span><h2 data-testid="ssr-probe">The shared source of truth.</h2><p>Server-rendered shell, hydrated by the selected runtime. Remotes load in the browser.</p></div><div className="host-controls"><label>Provider message<input aria-label="Provider message" value={message} onChange={e => setMessage(e.target.value)} /></label><div className="buttons"><button onClick={() => setCount(n => n + 1)}>Host count: <span data-testid="host-count">{count}</span> +</button><button className="secondary" onClick={() => setMounted(v => !v)}>{mounted ? 'Unmount remotes' : 'Mount remotes'}</button></div></div></section>
+    <section className="host-panel" id="demo"><div><span className="eyebrow">HOST / :4100</span><h2 data-testid="ssr-probe">The shared source of truth.</h2><p>Server-rendered shell, hydrated by the selected runtime. Remotes load in the browser.</p></div><div className="host-controls"><label>Provider message<input aria-label="Provider message" value={message} onChange={e => setMessage(e.target.value)} /></label><div className="buttons"><button onClick={() => setCount(n => n + 1)}>Host count: <span data-testid="host-count">{count}</span> +</button><button className="secondary" onClick={() => setMounted(v => !v)}>{mounted ? 'Unmount remotes' : 'Mount remotes'}</button></div></div></section>
     <LabContext.Provider value={{ count, message, increment: () => setCount(n => n + 1) }}>
       <div className="remote-grid">{mounted && widgets.map(({ name, Widget }) => <Boundary key={name} name={name}><Suspense fallback={<div className="remote loading" data-testid={`${name}-loading`}>Loading {name} over HTTP…</div>}><Widget /></Suspense></Boundary>)}</div>
     </LabContext.Provider>
@@ -50,3 +50,4 @@ export function Lab() {
     <footer><span>Built to answer a question, not assume the answer.</span><span>SSR SHELL · CLIENT-LOADED REMOTES · PRODUCTION BUILDS</span></footer>
   </main>
 }
+

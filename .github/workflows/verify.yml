@@ -17,7 +17,11 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: npm run build -- all
       - run: npm run typecheck
+      - run: node --test tests/provenance.test.mjs
       - run: npm run verify -- all
+      - run: npm run benchmark
+        env:
+          LAB_BENCH_ROUNDS: '3'
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -25,3 +29,4 @@ jobs:
           path: |
             artifacts/latest/
             test-results/
+            docs/evidence/benchmark.json

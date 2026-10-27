@@ -2,16 +2,17 @@
 
 **Yes: Redact 0.2.1 worked across the Module Federation boundaries tested here.**
 
-A TanStack Start host renders three independently built Vite remotes. The same app runs in three configurations: React, Redact with default aliases, and Redact with explicit host-provided shared modules.
+A TanStack Start host renders three independently built Vite remotes. The same app runs in four configurations: React, Redact with default aliases, Redact with explicitly shared APIs, and Redact with shared APIs plus a host-provided Federation runtime.
 
 - [Live demo on Zephyr Cloud](https://beierkevin-68-start-host-redact-mf-lab-kevin-beie-5322a365b-ze.zephyrcloud.app/)
 - [Detailed findings and limitations](docs/FINDINGS.md)
+- [Benchmark method and raw measurements](docs/BENCHMARKS.md)
 - [Recorded browser evidence](docs/evidence/results.json)
 - [Reply draft](docs/REPLY.md)
 - [Zephyr project](https://app.zephyr-cloud.io/org/kevin-beier/redact-mf-lab) (account access required)
 - [Exact deployed host and remote URLs](deployments/zephyr.json)
 
-The host includes an interactive identity table and a “What we learned” section. This is a scoped experiment, not a claim of universal React compatibility or federated SSR support.
+The host includes an interactive benchmark panel, an identity table, a configuration walkthrough, and a “What we learned” section. The payload comparison separates Redact’s contribution from additional Federation packaging changes. This is a scoped experiment, not a claim of universal React compatibility or federated SSR support.
 
 ## Reproduce
 
@@ -31,7 +32,7 @@ On a fresh Linux machine, use `npx playwright install --with-deps chromium`.
 
 Local tests start and stop the production servers themselves. They do not need Zephyr credentials or Internet access after dependencies and the browser have been installed. Fonts are served locally.
 
-Expected matrix: **React 5 passed / 1 skipped; default-alias Redact 6 passed; explicitly shared Redact 5 passed / 1 skipped.** The sixth test specifically checks the default-alias configuration’s different function identities and is skipped in the two singleton configurations.
+Expected matrix: **React 6 passed / 1 skipped; default-alias Redact 7 passed; shared-API Redact 6 passed / 1 skipped; optimized Redact 6 passed / 1 skipped.** The scenario-specific test checks the default-alias build’s different function identities and is skipped in the singleton configurations. A separate test exercises the interactive benchmark showcase.
 
 Open the interactive demo separately:
 
@@ -44,6 +45,7 @@ Visit http://localhost:4100. The default is `redact-shared`. For the other build
 ```sh
 npm start -- react
 npm start -- redact-naive
+npm start -- redact-optimized
 ```
 
 Run one scenario with `npm run verify -- redact-shared`. Build one scenario with `npm run build -- redact-shared`.
@@ -56,6 +58,7 @@ Run one scenario with `npm run verify -- redact-shared`. Build one scenario with
 4. Open the portal remote and update shared state from inside its portal.
 5. Unmount and remount the remotes; local state resets and host state survives.
 6. Inspect strict function/context equality in the identity table.
+7. Switch between browser transfer, emitted size, and readiness measurements; compare profiles and inspect the setup.
 
 The automated tests additionally delay one remote entry to exercise Suspense and abort it to check that the other two remain usable. They check that the server-rendered host heading retains its DOM identity through hydration.
 
@@ -78,6 +81,16 @@ The host uses the [Module Federation runtime API](https://module-federation.io/g
 
 See [the exact build configuration](shared/build-config.ts) and [the host’s runtime registration](apps/host/src/federation.ts).
 
+## Measure the benefits
+
+```sh
+npm run benchmark
+```
+
+After building all four variants, this runs 72 cold-browser samples: 9 rounds per build with two CPU/network profiles. It records actual gzipped JS/CSS transfers, request counts, emitted gzip/Brotli sizes, readiness, cross-remote updates, and portal-open download deltas. Build/source hashes are checked before and after sampling. Read [the methodology and limitations](docs/BENCHMARKS.md) before quoting timing results.
+
+The optimized variant reuses the host’s Federation runtime-core through the plugin’s experimental external-runtime option. No Redact features are disabled. It also omits Snapshot support for this plain-ESM-entry experiment. Smaller payloads are a measured benefit; faster interactions are not assumed.
+
 ## Deploy to Zephyr
 
 The live demo consists of **four separate applications** in project `redact-mf-lab`, organization `kevin-beier`:
@@ -96,13 +109,13 @@ npm run deploy
 npm run verify:live
 ```
 
-Authenticate using Zephyr’s normal SDK browser sign-in first if this machine is not logged in. The deployment script deliberately fails without valid credentials. It builds the three remotes, records their immutable URLs, builds the host against those URLs, and verifies HTTP availability. `verify:live` runs the same five functional browser tests against the deployed host and three remote origins.
+Authenticate using Zephyr’s normal SDK browser sign-in first if this machine is not logged in. The deployment script deliberately fails without valid credentials. It builds the three optimized remotes, records their immutable URLs, builds the optimized host against those URLs, and verifies HTTP availability. `verify:live` runs the functional and showcase tests against the deployed host and three remote origins.
 
 The TanStack Start Zephyr adapter does not resolve `zephyr:dependencies` into URLs. This runtime-API host therefore pins the URLs returned by the remote deployments in [the deployment manifest](deployments/zephyr.json). It does not claim Zephyr selector resolution or automatic tag promotion.
 
 ## Evidence and checks
 
-[GitHub Actions](.github/workflows/verify.yml) rebuilds and tests all three local configurations on Linux. Raw reports, screenshots, and failure traces are uploaded as workflow artifacts. A test run writes fresh local evidence to the ignored `artifacts/latest/` directory. The checked-in snapshot is in [docs/evidence](docs/evidence).
+[GitHub Actions](.github/workflows/verify.yml) rebuilds and tests all four local configurations on Linux, checks the provenance guard, and runs a three-round benchmark smoke test. Raw reports, screenshots, failure traces and the CI benchmark are uploaded as workflow artifacts. CI timings are separate from the checked-in nine-round local benchmark. A test run writes fresh local evidence to the ignored `artifacts/latest/` directory. The checked-in snapshot is in [docs/evidence](docs/evidence).
 
 After running the local matrix and live verification, `node scripts/evidence.mjs` refreshes the checked-in evidence. It refuses reports with failed or flaky tests. File-size measurements are sums of separately gzipped emitted client JavaScript/CSS files; they are not page-transfer measurements or rendering benchmarks.
 

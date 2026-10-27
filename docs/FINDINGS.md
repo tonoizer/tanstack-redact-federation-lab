@@ -6,13 +6,14 @@ Experiment date: **2026-10-27**. The lockfile pins the full dependency graph. Ex
 
 **Redact 0.2.1 worked for the client-side Federation boundaries exercised by this demo.** The production-built TanStack Start host loaded three independently compiled Vite ESM containers from three separate origins. Shared hooks, context updates, callbacks, portals, lazy loading, and remounts passed.
 
-The same five checks also passed against the four applications deployed to Zephyr Cloud. React 19.3.1 supplies the reference configuration.
+The initial five checks also passed against the four applications deployed to Zephyr Cloud. React 19.3.1 supplies the reference configuration. The extended demo adds a fourth optimized build and a benchmark showcase test; see [the benchmark report](BENCHMARKS.md) for the current measurements and method.
 
 | Configuration | Interaction tests | Function identity vs host | Shared context object |
 | --- | --- | --- | --- |
 | `react` | Pass | Same | Same |
 | `redact-naive` — default Redact aliases | Pass | Different | Same |
 | `redact-shared` — explicit host shares | Pass | Same | Same |
+| `redact-optimized` — shared APIs + external MF core | Pass | Same | Same |
 | Zephyr live — `redact-shared` | Pass | Same | Same |
 
 “Naive” is only the scenario name. It is **not** a failed compatibility case. The experiment originally investigated duplicate-dispatcher failures; actual browser results did not show those failures, so the test records the observed behavior instead.
@@ -101,7 +102,7 @@ Live verification checks actual cross-origin remote responses, reference identit
 
 ## 7. Bundle measurements have a narrow meaning
 
-[results.json](evidence/results.json) includes per-file and per-application raw/gzip sizes for all three local builds. The script includes every emitted client `.js` and `.css` file for the host and three remote outputs. It excludes server files, fonts, JSON, HTML, and source maps.
+[results.json](evidence/results.json) includes per-file and per-application raw/gzip sizes for the current local builds. The script includes every emitted client `.js` and `.css` file for the host and three remote outputs. It excludes server files, fonts, JSON, HTML, and source maps.
 
 These totals help inspect duplication and Federation overhead. They are not a measured page download, Core Web Vitals, CPU-time result, or a general percentage saving attributable to Redact. No rendering-performance claim is made.
 
@@ -111,7 +112,13 @@ These totals help inspect duplication and Federation overhead. They are not a me
 | Redact, default aliases | 91,050 | 32,343 | 32,259 | 49,048 | **204,700** |
 | Redact, explicit shares | 91,050 | 32,379 | 32,299 | 32,657 | **188,385** |
 
-All values are **gzip bytes** under the method above. For this exact build, explicit sharing produces 44,223 fewer emitted gzip bytes than the React reference and 16,315 fewer than the default-alias Redact variant. These numbers include each remote’s Federation infrastructure.
+All values in this historical table are **gzip bytes** from [the initial snapshot](evidence/initial-results.json), before the benchmark UI was added. For that exact build, explicit sharing produced 44,223 fewer emitted gzip bytes than the React reference and 16,315 fewer than the default-alias Redact variant. These numbers include each remote’s Federation infrastructure. Do not mix them with the current build or browser-transfer numbers.
+
+## 8. Further optimization: share the Federation runtime
+
+The fourth build, `redact-optimized`, keeps explicit React API sharing and reuses the host’s Federation runtime-core. Its remotes no longer bundle their own copy. Snapshot support is omitted for this plain-ESM-entry experiment. This is an infrastructure packaging optimization in addition to using Redact, not an additional saving attributable to Redact alone.
+
+The [benchmark report](BENCHMARKS.md) distinguishes emitted gzip/Brotli totals, actual browser JS/CSS transfers, all-resource transfers, readiness, long tasks, and cross-remote update timings. It includes repeated runs, two profiles, per-file hashes and a stale-build guard. All Redact features remain enabled. The live host lets visitors switch metrics and inspect the configuration.
 
 ## Scope and untested cases
 

@@ -9,7 +9,7 @@ export function Findings() {
       <article><span className="eyebrow">03 / THE EXPLICIT CONFIGURATION</span><h3>Let Federation own the imports.</h3><p>The host registers its Redact-backed React and DOM modules. Remotes use singleton shares with <code>import: false</code>; Redact skips the shared React import names there. The shared context object is provided once by the host.</p></article>
       <article><span className="eyebrow">04 / THE LIMIT</span><h3>A measured result, with a scope.</h3><p>The host shell is server rendered and hydrated. Remote components load in the browser. Federated SSR, mixed Redact versions, React/Redact mixing, cross-bundler remotes, and iframe boundaries are outside this experiment.</p></article>
     </div>
-    <div className="reproduce"><span>REPRODUCE ALL THREE CONFIGURATIONS</span><code>npm ci &amp;&amp; npm run build -- all &amp;&amp; npm run verify -- all</code><a href={`${repo}/blob/main/docs/REPLY.md`}>Reply draft ↗</a></div>
+    <div className="reproduce"><span>REPRODUCE THE BUILD MATRIX</span><code>npm ci &amp;&amp; npm run build -- all &amp;&amp; npm run verify -- all</code><a href={`${repo}/blob/main/docs/REPLY.md`}>Reply draft ↗</a></div>
     <p className="deployment-note">Hosted on Zephyr Cloud: one SSR host and three separate remote deployments. The host pins the remote version URLs recorded in <a href={`${repo}/blob/main/deployments/zephyr.json`}>the deployment manifest</a>.</p>
   </section>
 }
