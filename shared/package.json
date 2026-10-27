@@ -1,0 +1,8 @@
+{
+  "name": "@lab/contract",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": "./contract.ts",
+  "peerDependencies": { "react": "19.3.1" }
+}
