@@ -48,6 +48,8 @@ Close other local demo servers first. Ports 4100–4103 must be free. On Linux, 
 
 The default is **9 rounds × 4 builds × 2 profiles = 72 fresh browser contexts**, with a fresh server process for every sample. The ordering rotates each round to spread CPU/thermal drift across builds. No warm-up samples are discarded. This is a cold **browser-cache** comparison; filesystem/OS cache and machine conditions are shared.
 
+Each build records its source digest, source commit (or dirty-source status), and output-file hashes. The runner validates them before sampling and again after sampling, rejecting stale source or changed output. The results snapshot itself is excluded from this fingerprint so refreshing the report does not invalidate its measured application code.
+
 For a short smoke run:
 
 ```powershell
@@ -76,6 +78,8 @@ Both use the same gzip/no-cache HTTP server for every application. These profile
 **Remote-ready:** `performance.now()` at the first animation frame containing all three remote DOM nodes and the counter’s mounted effect. It starts at navigation and includes the SSR response, browser loading, hydration and remote initialization. Playwright’s polling overhead is excluded because the timestamp is captured inside the page. It does not mean every future interaction is ready.
 
 **Cross-remote update:** 12 programmatic context-remote button clicks per sample, each followed by two animation frames and validation that the sibling remote observes the increment. This includes frame scheduling and is **not INP**, trusted-user input latency or a scheduler stress test. Similar values near two frame intervals are expected and do not establish a speed advantage.
+
+**Portal-open delta:** new requests after opening the already-loaded portal remote are recorded separately. Zero additional JS/CSS bytes means its required code was already loaded; it is not a statement that the portal costs zero bytes on initial load.
 
 **FCP and long tasks:** recorded as supporting diagnostics for the initial load. FCP can occur in the SSR shell before any remote is ready. Long-task totals cover the recorded initial-load window, not the later interaction sequence.
 

@@ -6,6 +6,7 @@ import { join, relative } from 'node:path'
 import { gzipSync, brotliCompressSync } from 'node:zlib'
 import { createHash } from 'node:crypto'
 import scenarios from '../shared/scenarios.json' with { type: 'json' }
+import { sourceProvenance, validateBuild } from './provenance.mjs'
 
 const rounds = Number(process.env.LAB_BENCH_ROUNDS ?? 9)
 if (!Number.isInteger(rounds) || rounds < 3 || rounds > 50) throw new Error('LAB_BENCH_ROUNDS must be 3–50')
@@ -13,22 +14,29 @@ const profiles = [
   { name: 'loopback', cpuRate: 1, latency: 0, downloadThroughput: -1, uploadThroughput: -1 },
   { name: 'constrained', cpuRate: 4, latency: 40, downloadThroughput: 1_250_000, uploadThroughput: 625_000 },
 ]
+const buildManifests = scenarios.map(scenario => {
+  const manifest = JSON.parse(readFileSync(`dist/${scenario}/build.json`, 'utf8'))
+  validateBuild(scenario, manifest)
+  return manifest
+})
 const browser = await chromium.launch()
 const runs = []
 const startedAt = new Date().toISOString()
 
 async function sample(scenario, profile, round) {
   const context = await browser.newContext({ viewport: { width: 1440, height: 1100 }, serviceWorkers: 'block' })
+  let page
+  const errors = [], requests = new Map(), failedRequests = []
   try {
-    const page = await context.newPage()
+    page = await context.newPage()
     const cdp = await context.newCDPSession(page)
     await cdp.send('Network.enable')
     await cdp.send('Network.setCacheDisabled', { cacheDisabled: true })
     await cdp.send('Network.emulateNetworkConditions', { offline: false, latency: profile.latency, downloadThroughput: profile.downloadThroughput, uploadThroughput: profile.uploadThroughput })
     await cdp.send('Emulation.setCPUThrottlingRate', { rate: profile.cpuRate })
-    const requests = new Map()
-    const errors = []
     page.on('pageerror', error => errors.push(error.message))
+    page.on('console', message => { if (message.type() === 'error') errors.push(message.text()) })
+    page.on('requestfailed', request => failedRequests.push({ url: request.url(), error: request.failure()?.errorText }))
     cdp.on('Network.responseReceived', event => {
       if (!event.response.url.startsWith('http://localhost:')) return
       const url = new URL(event.response.url)
@@ -71,17 +79,27 @@ async function sample(scenario, profile, round) {
       }
       return samples
     })
+    const beforePortal = new Set(requests.keys())
     await page.getByRole('button', { name: 'Open remote portal' }).click()
     await page.getByRole('dialog').waitFor()
     if (await page.getByTestId('portal-count').textContent() !== '12') throw new Error('Portal lost shared context')
+    await page.waitForLoadState('networkidle')
+    const portalRequests = [...requests.entries()].filter(([id]) => !beforePortal.has(id)).map(([, request]) => ({ ...request }))
     const initialJS = initialRequests.filter(r => r.type === 'Script' || r.type === 'Stylesheet')
     if (initialJS.some(r => !r.gzip || !r.transferBytes || r.status !== 200)) throw new Error('Incomplete or uncompressed JS/CSS transfer measurement')
     if (errors.length) throw new Error(errors.join('\n'))
     return { scenario, profile: profile.name, round, ...timing, updateMs,
       jsCssTransferBytes: initialJS.reduce((sum, r) => sum + r.transferBytes, 0),
       jsCssRequests: initialJS.length,
+      portalJsCssTransferBytes: portalRequests.filter(r => r.type === 'Script' || r.type === 'Stylesheet').reduce((sum, r) => sum + (r.transferBytes ?? 0), 0),
       allResourceTransferBytes: initialRequests.reduce((sum, r) => sum + (r.transferBytes ?? 0), 0),
-      requests: initialRequests }
+      requests: initialRequests, portalRequests }
+  } catch (error) {
+    mkdirSync('artifacts/latest', { recursive: true })
+    const failure = { scenario, profile, round, error: error.message, errors, failedRequests, requests: [...requests.values()], body: await page?.locator('body').innerText().catch(() => null) }
+    writeFileSync('artifacts/latest/benchmark-failure.json', JSON.stringify(failure, null, 2))
+    await page?.screenshot({ path: 'artifacts/latest/benchmark-failure.png', fullPage: true }).catch(() => {})
+    throw new Error(`Benchmark failed: ${scenario}/${profile.name}/round ${round}. See artifacts/latest/benchmark-failure.json`, { cause: error })
   } finally { await context.close() }
 }
 
@@ -101,6 +119,7 @@ try {
     }
   }
 } finally { await browser.close() }
+for (const manifest of buildManifests) validateBuild(manifest.scenario, manifest)
 
 function distribution(values) {
   const sorted = [...values].sort((a, b) => a - b)
@@ -116,6 +135,7 @@ const summary = profiles.flatMap(profile => scenarios.map(scenario => {
     jsCssTransferBytes: distribution(samples.map(s => s.jsCssTransferBytes)),
     jsCssRequests: distribution(samples.map(s => s.jsCssRequests)),
     allResourceTransferBytes: distribution(samples.map(s => s.allResourceTransferBytes)),
+    portalJsCssTransferBytes: distribution(samples.map(s => s.portalJsCssTransferBytes)),
     longTaskMs: distribution(samples.map(s => s.longTaskMs)),
   }
 }))
@@ -129,7 +149,7 @@ const builds = scenarios.map(scenario => ({ scenario, apps: ['host', 'counter', 
   return { app, gzipBytes: entries.reduce((sum, entry) => sum + entry.gzipBytes, 0), brotliBytes: entries.reduce((sum, entry) => sum + entry.brotliBytes, 0), files: entries }
 }) }))
 const result = { schemaVersion: 1, startedAt, completedAt: new Date().toISOString(),
-  sourceCommit: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
+  provenance: { runner: sourceProvenance(), builds: buildManifests.map(({ scenario, builtAt, source, outputs }) => ({ scenario, builtAt, sourceCommit: source.sourceCommit, sourceDigest: source.sourceDigest, outputDigest: outputs.outputDigest })) },
   environment: { node: process.version, chromium: browser.version(), os: `${platform()} ${release()}`, cpu: cpus()[0].model, logicalCpus: cpus().length },
   methodology: {
     rounds, profiles, browser: 'Fresh Chromium context per sample; cache disabled; service workers blocked; gzip HTTP loopback server for every variant.',
