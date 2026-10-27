@@ -4,8 +4,6 @@ This extension measures **two distinct optimizations**: substituting Redact for 
 
 The [live demo](../README.md) includes an interactive comparison of emitted size, browser transfer and readiness. [Raw samples](evidence/benchmark.json) include the machine, browser, profiles, timestamps, file hashes, per-request transfers and all individual runs. The [initial experiment](evidence/initial-results.json) remains available as a historical snapshot.
 
-## Four builds, the same application
-
 ## Recorded result
 
 Final snapshot: **72 samples**, 9 per build/profile, Chromium 156.0.8078.4 on Windows with a Ryzen 5 5600X. Exact timestamps, source/output hashes and every request are in [the raw report](evidence/benchmark.json).

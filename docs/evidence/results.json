@@ -1,6 +1,6 @@
 {
-  "recordedAt": "2026-10-27T14:54:52.133Z",
-  "sourceCommit": "ef2e5d4d9b781454ccb1a542f0cd93a7fa189298",
+  "recordedAt": "2026-10-27T17:24:22.695Z",
+  "sourceCommit": "efc3add239c7ad9810894c9e0cacb017022a3a46",
   "versions": {
     "@module-federation/enhanced": "2.9.2",
     "@tanstack/react-router": "1.170.46",
@@ -28,7 +28,7 @@
       "identity": {
         "scenario": "react",
         "hostURL": "http://localhost:4100/",
-        "testedAt": "2026-10-27T14:54:24.895Z",
+        "testedAt": "2026-10-27T17:23:47.222Z",
         "node": "v24.19.0",
         "browser": "156.0.8078.4",
         "remoteOrigins": [
@@ -63,6 +63,10 @@
         {
           "title": "default aliases produce distinct exports even when the tested interactions work",
           "status": "skipped"
+        },
+        {
+          "title": "the benchmark showcase switches metrics and profiles with traceable data",
+          "status": "passed"
         }
       ]
     },
@@ -71,7 +75,7 @@
       "identity": {
         "scenario": "redact-naive",
         "hostURL": "http://localhost:4100/",
-        "testedAt": "2026-10-27T14:54:31.375Z",
+        "testedAt": "2026-10-27T17:23:54.337Z",
         "node": "v24.19.0",
         "browser": "156.0.8078.4",
         "remoteOrigins": [
@@ -106,6 +110,10 @@
         {
           "title": "default aliases produce distinct exports even when the tested interactions work",
           "status": "passed"
+        },
+        {
+          "title": "the benchmark showcase switches metrics and profiles with traceable data",
+          "status": "passed"
         }
       ]
     },
@@ -114,7 +122,7 @@
       "identity": {
         "scenario": "redact-shared",
         "hostURL": "http://localhost:4100/",
-        "testedAt": "2026-10-27T14:54:37.989Z",
+        "testedAt": "2026-10-27T17:24:01.531Z",
         "node": "v24.19.0",
         "browser": "156.0.8078.4",
         "remoteOrigins": [
@@ -149,21 +157,25 @@
         {
           "title": "default aliases produce distinct exports even when the tested interactions work",
           "status": "skipped"
+        },
+        {
+          "title": "the benchmark showcase switches metrics and profiles with traceable data",
+          "status": "passed"
         }
       ]
     },
     {
-      "name": "zephyr-live",
+      "name": "redact-optimized",
       "identity": {
-        "scenario": "redact-shared",
-        "hostURL": "https://beierkevin-68-start-host-redact-mf-lab-kevin-beie-5322a365b-ze.zephyrcloud.app/",
-        "testedAt": "2026-10-27T14:54:45.211Z",
+        "scenario": "redact-optimized",
+        "hostURL": "http://localhost:4100/",
+        "testedAt": "2026-10-27T17:24:08.506Z",
         "node": "v24.19.0",
         "browser": "156.0.8078.4",
         "remoteOrigins": [
-          "https://beierkevin-65-counter-redact-mf-lab-kevin-beier-2e590a0a3-ze.zephyrcloud.app",
-          "https://beierkevin-66-context-redact-mf-lab-kevin-beier-537e07da8-ze.zephyrcloud.app",
-          "https://beierkevin-67-portal-redact-mf-lab-kevin-beier-a9bcfb063-ze.zephyrcloud.app"
+          "http://localhost:4101",
+          "http://localhost:4102",
+          "http://localhost:4103"
         ],
         "identity": "counter\tPASS\tPASS\tPASS\tPASS\t—\ncontext\tPASS\tPASS\tPASS\tPASS\t—\nportal\tPASS\tPASS\tPASS\tPASS\tPASS",
         "renderedErrors": []
@@ -192,6 +204,57 @@
         {
           "title": "default aliases produce distinct exports even when the tested interactions work",
           "status": "skipped"
+        },
+        {
+          "title": "the benchmark showcase switches metrics and profiles with traceable data",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "name": "zephyr-live",
+      "identity": {
+        "scenario": "redact-optimized",
+        "hostURL": "https://beierkevin-72-start-host-redact-mf-lab-kevin-beie-3db1a3920-ze.zephyrcloud.app/",
+        "testedAt": "2026-10-27T17:24:14.932Z",
+        "node": "v24.19.0",
+        "browser": "156.0.8078.4",
+        "remoteOrigins": [
+          "https://beierkevin-69-counter-redact-mf-lab-kevin-beier-f3a57d3a0-ze.zephyrcloud.app",
+          "https://beierkevin-70-context-redact-mf-lab-kevin-beier-748bde89a-ze.zephyrcloud.app",
+          "https://beierkevin-71-portal-redact-mf-lab-kevin-beier-3553b8daa-ze.zephyrcloud.app"
+        ],
+        "identity": "counter\tPASS\tPASS\tPASS\tPASS\t—\ncontext\tPASS\tPASS\tPASS\tPASS\t—\nportal\tPASS\tPASS\tPASS\tPASS\tPASS",
+        "renderedErrors": []
+      },
+      "tests": [
+        {
+          "title": "Start serves real HTML and hydration preserves the server DOM node",
+          "status": "passed"
+        },
+        {
+          "title": "federation loads three real HTTP remote entries and exposes runtime identity",
+          "status": "passed"
+        },
+        {
+          "title": "hooks, host context, remote callbacks, portals and remounts work across boundaries",
+          "status": "passed"
+        },
+        {
+          "title": "Suspense fallback remains visible while a remote HTTP request is delayed",
+          "status": "passed"
+        },
+        {
+          "title": "a failed remote is contained and the other two remain interactive",
+          "status": "passed"
+        },
+        {
+          "title": "default aliases produce distinct exports even when the tested interactions work",
+          "status": "skipped"
+        },
+        {
+          "title": "the benchmark showcase switches metrics and profiles with traceable data",
+          "status": "passed"
         }
       ]
     }
@@ -204,28 +267,28 @@
         "apps": [
           {
             "app": "host",
-            "bytes": 427468,
-            "gzipBytes": 135262,
+            "bytes": 438008,
+            "gzipBytes": 138328,
             "files": [
               {
-                "file": "assets/federation-Eu3jOE7x.js",
-                "bytes": 70755,
-                "gzipBytes": 21099
+                "file": "assets/federation-Dz-B_sSg.js",
+                "bytes": 70772,
+                "gzipBytes": 21108
               },
               {
-                "file": "assets/index-BZnbE7hd.css",
-                "bytes": 7391,
-                "gzipBytes": 2204
-              },
-              {
-                "file": "assets/index-ElsTBBss.js",
+                "file": "assets/index-9_ULWXLW.js",
                 "bytes": 341179,
                 "gzipBytes": 108979
               },
               {
-                "file": "assets/routes-qG4laI_8.js",
-                "bytes": 8143,
-                "gzipBytes": 2980
+                "file": "assets/index-CCLkhG_I.css",
+                "bytes": 10324,
+                "gzipBytes": 2822
+              },
+              {
+                "file": "assets/routes-DZpHkk-R.js",
+                "bytes": 15733,
+                "gzipBytes": 5419
               }
             ]
           },
@@ -386,30 +449,30 @@
             ]
           }
         ],
-        "totalGzipBytes": 232608
+        "totalGzipBytes": 235674
       },
       {
         "scenario": "redact-naive",
         "apps": [
           {
             "app": "host",
-            "bytes": 267586,
-            "gzipBytes": 91050,
+            "bytes": 277423,
+            "gzipBytes": 94079,
             "files": [
               {
-                "file": "assets/federation-BhECyvax.js",
-                "bytes": 73767,
-                "gzipBytes": 22331
+                "file": "assets/federation-DYLRYrm2.js",
+                "bytes": 73784,
+                "gzipBytes": 22339
               },
               {
-                "file": "assets/index-BZnbE7hd.css",
-                "bytes": 7391,
-                "gzipBytes": 2204
+                "file": "assets/index-CCLkhG_I.css",
+                "bytes": 10324,
+                "gzipBytes": 2822
               },
               {
-                "file": "assets/index-CnS9gliw.js",
+                "file": "assets/index-Chd0UXaf.js",
                 "bytes": 174061,
-                "gzipBytes": 61463
+                "gzipBytes": 61461
               },
               {
                 "file": "assets/jsx-runtime-yeIm8NIz.js",
@@ -422,9 +485,9 @@
                 "gzipBytes": 154
               },
               {
-                "file": "assets/routes-LLvOzfZG.js",
-                "bytes": 7399,
-                "gzipBytes": 2970
+                "file": "assets/routes-7iaXPnx0.js",
+                "bytes": 14286,
+                "gzipBytes": 5375
               }
             ]
           },
@@ -585,28 +648,28 @@
             ]
           }
         ],
-        "totalGzipBytes": 204700
+        "totalGzipBytes": 207729
       },
       {
         "scenario": "redact-shared",
         "apps": [
           {
             "app": "host",
-            "bytes": 267587,
-            "gzipBytes": 91050,
+            "bytes": 277424,
+            "gzipBytes": 94083,
             "files": [
               {
-                "file": "assets/federation-ByeUVWvv.js",
-                "bytes": 73767,
-                "gzipBytes": 22331
+                "file": "assets/federation-CMx1yVGU.js",
+                "bytes": 73784,
+                "gzipBytes": 22340
               },
               {
-                "file": "assets/index-BZnbE7hd.css",
-                "bytes": 7391,
-                "gzipBytes": 2204
+                "file": "assets/index-CCLkhG_I.css",
+                "bytes": 10324,
+                "gzipBytes": 2822
               },
               {
-                "file": "assets/index-CHuYauWY.js",
+                "file": "assets/index-gcBKzGn2.js",
                 "bytes": 174061,
                 "gzipBytes": 61462
               },
@@ -621,9 +684,9 @@
                 "gzipBytes": 154
               },
               {
-                "file": "assets/routes-Di5BrK1y.js",
-                "bytes": 7400,
-                "gzipBytes": 2971
+                "file": "assets/routes-B52J_ltw.js",
+                "bytes": 14287,
+                "gzipBytes": 5377
               }
             ]
           },
@@ -784,7 +847,206 @@
             ]
           }
         ],
-        "totalGzipBytes": 188385
+        "totalGzipBytes": 191418
+      },
+      {
+        "scenario": "redact-optimized",
+        "apps": [
+          {
+            "app": "host",
+            "bytes": 277636,
+            "gzipBytes": 94034,
+            "files": [
+              {
+                "file": "assets/federation--Cl3ifIw.js",
+                "bytes": 73993,
+                "gzipBytes": 22293
+              },
+              {
+                "file": "assets/index-CCLkhG_I.css",
+                "bytes": 10324,
+                "gzipBytes": 2822
+              },
+              {
+                "file": "assets/index-ucjO_w0N.js",
+                "bytes": 174061,
+                "gzipBytes": 61462
+              },
+              {
+                "file": "assets/jsx-runtime-yeIm8NIz.js",
+                "bytes": 4810,
+                "gzipBytes": 1928
+              },
+              {
+                "file": "assets/rolldown-runtime-DK3Fl9T5.js",
+                "bytes": 158,
+                "gzipBytes": 154
+              },
+              {
+                "file": "assets/routes-DpfPQpB0.js",
+                "bytes": 14290,
+                "gzipBytes": 5375
+              }
+            ]
+          },
+          {
+            "app": "counter",
+            "bytes": 38628,
+            "gzipBytes": 13949,
+            "files": [
+              {
+                "file": "assets/dist-BGCxGCM2.js",
+                "bytes": 298,
+                "gzipBytes": 224
+              },
+              {
+                "file": "assets/helpers-BeXt4QSy.js",
+                "bytes": 88,
+                "gzipBytes": 102
+              },
+              {
+                "file": "assets/hostInit-BkCHua-s.js",
+                "bytes": 5190,
+                "gzipBytes": 2208
+              },
+              {
+                "file": "assets/pendingShares-Dhs81lbA.js",
+                "bytes": 1485,
+                "gzipBytes": 831
+              },
+              {
+                "file": "assets/utils-D_aEWdt_.js",
+                "bytes": 2417,
+                "gzipBytes": 798
+              },
+              {
+                "file": "assets/vite-preload-helper-BLdHbfdN.js",
+                "bytes": 1557,
+                "gzipBytes": 812
+              },
+              {
+                "file": "assets/Widget-Qh6NZQHQ.js",
+                "bytes": 5321,
+                "gzipBytes": 1445
+              },
+              {
+                "file": "assets/_virtual_mf-localSharedImportMap___mfe_internal__counter__mf_owner__1-hiUVOp3G.js",
+                "bytes": 1122,
+                "gzipBytes": 477
+              },
+              {
+                "file": "remoteEntry.js",
+                "bytes": 21150,
+                "gzipBytes": 7052
+              }
+            ]
+          },
+          {
+            "app": "context",
+            "bytes": 38436,
+            "gzipBytes": 13867,
+            "files": [
+              {
+                "file": "assets/dist-BGCxGCM2.js",
+                "bytes": 298,
+                "gzipBytes": 224
+              },
+              {
+                "file": "assets/helpers-BeXt4QSy.js",
+                "bytes": 88,
+                "gzipBytes": 102
+              },
+              {
+                "file": "assets/hostInit-DM6hWXLq.js",
+                "bytes": 5190,
+                "gzipBytes": 2207
+              },
+              {
+                "file": "assets/pendingShares-CxOh0tvX.js",
+                "bytes": 1485,
+                "gzipBytes": 830
+              },
+              {
+                "file": "assets/utils-D_aEWdt_.js",
+                "bytes": 2417,
+                "gzipBytes": 798
+              },
+              {
+                "file": "assets/vite-preload-helper-BLdHbfdN.js",
+                "bytes": 1557,
+                "gzipBytes": 812
+              },
+              {
+                "file": "assets/Widget-CJJadK25.js",
+                "bytes": 5127,
+                "gzipBytes": 1363
+              },
+              {
+                "file": "assets/_virtual_mf-localSharedImportMap___mfe_internal__context__mf_owner__1-BftBwjPc.js",
+                "bytes": 1122,
+                "gzipBytes": 477
+              },
+              {
+                "file": "remoteEntry.js",
+                "bytes": 21152,
+                "gzipBytes": 7054
+              }
+            ]
+          },
+          {
+            "app": "portal",
+            "bytes": 40368,
+            "gzipBytes": 14226,
+            "files": [
+              {
+                "file": "assets/dist-BGCxGCM2.js",
+                "bytes": 298,
+                "gzipBytes": 224
+              },
+              {
+                "file": "assets/helpers-BeXt4QSy.js",
+                "bytes": 88,
+                "gzipBytes": 102
+              },
+              {
+                "file": "assets/hostInit-B8P9oixN.js",
+                "bytes": 5186,
+                "gzipBytes": 2207
+              },
+              {
+                "file": "assets/pendingShares-DbRVooJK.js",
+                "bytes": 1484,
+                "gzipBytes": 832
+              },
+              {
+                "file": "assets/utils-D_aEWdt_.js",
+                "bytes": 2417,
+                "gzipBytes": 798
+              },
+              {
+                "file": "assets/vite-preload-helper-BLdHbfdN.js",
+                "bytes": 1557,
+                "gzipBytes": 812
+              },
+              {
+                "file": "assets/Widget-k7fsV6Sx.js",
+                "bytes": 7069,
+                "gzipBytes": 1719
+              },
+              {
+                "file": "assets/_virtual_mf-localSharedImportMap___mfe_internal__portal__mf_owner__1-7mFXDDMw.js",
+                "bytes": 1121,
+                "gzipBytes": 476
+              },
+              {
+                "file": "remoteEntry.js",
+                "bytes": 21148,
+                "gzipBytes": 7056
+              }
+            ]
+          }
+        ],
+        "totalGzipBytes": 136076
       }
     ]
   }

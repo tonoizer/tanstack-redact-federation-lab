@@ -18,6 +18,10 @@ The repo includes the exact configs, four build variants, Playwright tests, evid
 
 Took the repro further: sharing Redact APIs + the MF core cut requested JS/CSS from 233 kB to 134 kB gzip (~43% vs React) in a local benchmark. Hooks, context & portals still pass. Deployed on Zephyr, with 72 samples and the method in the repo.
 
-Use the current live link from the README and the benchmark report:
+Live demo:
+
+https://beierkevin-72-start-host-redact-mf-lab-kevin-beie-3db1a3920-ze.zephyrcloud.app/
+
+Benchmark report:
 
 https://github.com/tonoizer/tanstack-redact-federation-lab/blob/main/docs/BENCHMARKS.md

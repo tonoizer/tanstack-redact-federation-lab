@@ -4,7 +4,7 @@
 
 A TanStack Start host renders three independently built Vite remotes. The same app runs in four configurations: React, Redact with default aliases, Redact with explicitly shared APIs, and Redact with shared APIs plus a host-provided Federation runtime.
 
-- [Live demo on Zephyr Cloud](https://beierkevin-68-start-host-redact-mf-lab-kevin-beie-5322a365b-ze.zephyrcloud.app/)
+- [Live demo on Zephyr Cloud](https://beierkevin-72-start-host-redact-mf-lab-kevin-beie-3db1a3920-ze.zephyrcloud.app/)
 - [Detailed findings and limitations](docs/FINDINGS.md)
 - [Benchmark method and raw measurements](docs/BENCHMARKS.md)
 - [Recorded browser evidence](docs/evidence/results.json)

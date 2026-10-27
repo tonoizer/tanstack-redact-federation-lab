@@ -4,6 +4,7 @@ const baseURL = process.env.LAB_BASE_URL
 const evidenceName = baseURL ? 'zephyr-live' : scenario
 export default defineConfig({
   testDir: './tests',
+  testMatch: '**/*.spec.ts',
   timeout: 30_000,
   fullyParallel: false,
   workers: 1,
