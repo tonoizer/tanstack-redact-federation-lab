@@ -12,4 +12,12 @@ One interesting detail: default Redact aliases passed the interaction tests too,
 
 For explicit sharing, I let Federation own the React/JSX/DOM import names in the remotes and supplied the host’s Redact-backed modules as singleton shares. Hooks, the shared context object, and createPortal then matched the host by reference.
 
-The repo includes the exact configs, three build variants, Playwright tests, evidence, limitations, and the live Zephyr demo link. The host is server rendered; the remotes load in the browser. I haven’t tested federated SSR or mixed versions.
+The repo includes the exact configs, four build variants, Playwright tests, evidence, limitations, and the live Zephyr demo link. The host is server rendered; the remotes load in the browser. I haven’t tested federated SSR or mixed versions.
+
+## Follow-up after the optimization
+
+Took the repro further: sharing Redact APIs + the MF core cut requested JS/CSS from 233 kB to 134 kB gzip (~43% vs React) in a local benchmark. Hooks, context & portals still pass. Deployed on Zephyr, with 72 samples and the method in the repo.
+
+Use the current live link from the README and the benchmark report:
+
+https://github.com/tonoizer/tanstack-redact-federation-lab/blob/main/docs/BENCHMARKS.md

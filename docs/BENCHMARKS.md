@@ -6,6 +6,27 @@ The [live demo](../README.md) includes an interactive comparison of emitted size
 
 ## Four builds, the same application
 
+## Recorded result
+
+Final snapshot: **72 samples**, 9 per build/profile, Chromium 156.0.8078.4 on Windows with a Ryzen 5 5600X. Exact timestamps, source/output hashes and every request are in [the raw report](evidence/benchmark.json).
+
+| Build | Requested JS/CSS gzip | Emitted JS/CSS gzip | Emitted Brotli | Constrained ready median | Middle 50% |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| React | 233,038 B | 235,674 B | 206,926 B | 1,417.5 ms | 1,397.5–1,424.1 ms |
+| Redact, default aliases | 205,619 B | 207,729 B | 185,507 B | 1,283.4 ms | 1,271.4–1,298.7 ms |
+| Redact, shared APIs | 189,307 B | 191,418 B | 170,487 B | 1,281.2 ms | 1,268.5–1,287.2 ms |
+| Redact, shared APIs + MF core | **133,960 B** | **136,076 B** | **121,151 B** | **1,235.3 ms** | 1,223.4–1,245.2 ms |
+
+The optimized variant saves **99,078 requested JS/CSS bytes (42.5%)** against React and **55,347 bytes (29.2%)** against the previous shared-API variant. Its host emitted gzip total is essentially unchanged (94,083 → 94,034 B); each remote drops from about 32 kB to 14 kB. This localizes the additional benefit to Federation packaging.
+
+The React build makes 25 JS/CSS requests; all three Redact builds make 27. Thus the smaller transfer does not come with fewer requests in this setup. All-resource transfer falls from about **600.1 kB to 501.1 kB (~16.5%)**, because fonts and document bytes are outside the JS/CSS reduction.
+
+The constrained local readiness median is about 182 ms lower than React in this snapshot. The unthrottled medians are 211.2, 188.9, 181.0 and 179.6 ms respectively. These are descriptive results from this synthetic setup; they do not establish the same improvement on Zephyr or another device.
+
+Cross-remote update medians are effectively unchanged: **about 33.1 ms** for every constrained build, consistent with the two-animation-frame measurement. All samples observed **zero extra JS/CSS bytes on portal open**, after the portal remote had already loaded.
+
+## Configuration matrix
+
 | Build | React API sharing | Federation runtime |
 | --- | --- | --- |
 | `react` | Host-provided React 19.3.1 | Included in each remote |

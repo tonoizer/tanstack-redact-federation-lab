@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "startedAt": "2026-10-27T17:13:47.357Z",
-  "completedAt": "2026-10-27T17:16:01.541Z",
+  "startedAt": "2026-10-27T17:19:06.676Z",
+  "completedAt": "2026-10-27T17:21:21.229Z",
   "provenance": {
     "runner": {
-      "gitHead": "502c1af088bf2b39aff7724e685553d3d1946545",
-      "sourceCommit": "502c1af088bf2b39aff7724e685553d3d1946545",
+      "gitHead": "51f1f4bc5b75beb36605c1255de67654fa660cfe",
+      "sourceCommit": "51f1f4bc5b75beb36605c1255de67654fa660cfe",
       "dirtyFiles": [],
-      "sourceDigest": "818085ed8583849c8d163d2a35b154b864895430d0e911dbb7df4ae1b3d011c5",
+      "sourceDigest": "4c6a03baac70b50a9c6c630bddded81571e5cef955c903a6567835ee95a79bab",
       "files": [
         {
           "path": "apps/context/index.html",
@@ -91,15 +91,15 @@
         },
         {
           "path": "apps/host/src/Benchmarks.tsx",
-          "sha256": "3a2aa77044e4db80419df42b82dda490bf53c829ac295e382e87dc96e3b9a596"
+          "sha256": "9f05a2bc75a8d5bc689c668584110f3e51f3a883413441cbf323cddd989331bb"
         },
         {
           "path": "apps/host/src/Findings.tsx",
-          "sha256": "f0295bb453512b104e3e9a31c96579e56bf43ea068cd7a59536b2afe7c6a2f84"
+          "sha256": "093eabedc11c863b86bf451fb3e6efb96957b2414950f567ac65107973c2bbe0"
         },
         {
           "path": "apps/host/src/Lab.tsx",
-          "sha256": "56ccc7761a3a67b711ff6ca87e0304523bd90b04e50baac55a4cefd62dc13781"
+          "sha256": "8c63c84d57328e6d366a378acb050a0908945a7a3e16d6eefc44e80f00d0838a"
         },
         {
           "path": "apps/host/src/federation.ts",
@@ -131,7 +131,7 @@
         },
         {
           "path": "apps/host/src/style.css",
-          "sha256": "86acd3b4a4ace743a4ecf5f0a87c6c493705a09cc1ec471d1ac3f8ac3250fe33"
+          "sha256": "8f4666603cd0ca24bd2f703ef06a2cccd2479d8ebf88833402d44565f0b82ff0"
         },
         {
           "path": "apps/host/vite.config.ts",
@@ -230,31 +230,31 @@
     "builds": [
       {
         "scenario": "react",
-        "builtAt": "2026-10-27T17:13:28.215Z",
-        "sourceCommit": "502c1af088bf2b39aff7724e685553d3d1946545",
-        "sourceDigest": "818085ed8583849c8d163d2a35b154b864895430d0e911dbb7df4ae1b3d011c5",
-        "outputDigest": "889aff333af75512fab8a1171c53dd7cfdafe96c3a481bbd57a5e0e0fe764fc1"
+        "builtAt": "2026-10-27T17:18:16.764Z",
+        "sourceCommit": "51f1f4bc5b75beb36605c1255de67654fa660cfe",
+        "sourceDigest": "4c6a03baac70b50a9c6c630bddded81571e5cef955c903a6567835ee95a79bab",
+        "outputDigest": "0e64b763f02aba92c430a2b6f7e5fb0d7ad6c8fc25f84ff44d77038a29b85e14"
       },
       {
         "scenario": "redact-naive",
-        "builtAt": "2026-10-27T17:13:34.261Z",
-        "sourceCommit": "502c1af088bf2b39aff7724e685553d3d1946545",
-        "sourceDigest": "818085ed8583849c8d163d2a35b154b864895430d0e911dbb7df4ae1b3d011c5",
-        "outputDigest": "f461e705c1a1613d152be9d1082b601552beaede643ece87e8b40bb77818e690"
+        "builtAt": "2026-10-27T17:18:22.831Z",
+        "sourceCommit": "51f1f4bc5b75beb36605c1255de67654fa660cfe",
+        "sourceDigest": "4c6a03baac70b50a9c6c630bddded81571e5cef955c903a6567835ee95a79bab",
+        "outputDigest": "4708706d5f3b5b160928be4ac8e4e1e66a125d43af33c5cc24f088eafdbd6642"
       },
       {
         "scenario": "redact-shared",
-        "builtAt": "2026-10-27T17:13:40.072Z",
-        "sourceCommit": "502c1af088bf2b39aff7724e685553d3d1946545",
-        "sourceDigest": "818085ed8583849c8d163d2a35b154b864895430d0e911dbb7df4ae1b3d011c5",
-        "outputDigest": "63afb32c1b3c35a21849082b20956a9ffedd6547ea12607880a89537a4926fe5"
+        "builtAt": "2026-10-27T17:18:28.597Z",
+        "sourceCommit": "51f1f4bc5b75beb36605c1255de67654fa660cfe",
+        "sourceDigest": "4c6a03baac70b50a9c6c630bddded81571e5cef955c903a6567835ee95a79bab",
+        "outputDigest": "8209ee9f09f65b40dc466785ac1be09962d9c12439cf6518043233d493b4de7c"
       },
       {
         "scenario": "redact-optimized",
-        "builtAt": "2026-10-27T17:13:45.847Z",
-        "sourceCommit": "502c1af088bf2b39aff7724e685553d3d1946545",
-        "sourceDigest": "818085ed8583849c8d163d2a35b154b864895430d0e911dbb7df4ae1b3d011c5",
-        "outputDigest": "f911bdb5159c8fe92508aa10d64b1c26d09b82623caa1e75c9fb4c7a0446f685"
+        "builtAt": "2026-10-27T17:18:34.396Z",
+        "sourceCommit": "51f1f4bc5b75beb36605c1255de67654fa660cfe",
+        "sourceDigest": "4c6a03baac70b50a9c6c630bddded81571e5cef955c903a6567835ee95a79bab",
+        "outputDigest": "c9f96eeaee036c757e1e205c77c121fbb1a91f5bcdaf101ab5e9d32d91de51fd"
       }
     ]
   },
@@ -297,32 +297,32 @@
       "profile": "loopback",
       "runs": 9,
       "remoteReadyMs": {
-        "min": 193.80000000447035,
-        "p25": 195.79999999701977,
-        "median": 208.60000000149012,
-        "p75": 209.40000000596046,
-        "max": 218.20000000298023
+        "min": 208.69999999552965,
+        "p25": 210.10000000149012,
+        "median": 211.19999999552965,
+        "p75": 216.39999999850988,
+        "max": 219.90000000596046
       },
       "fcpMs": {
         "min": 112,
-        "p25": 116,
+        "p25": 112,
         "median": 116,
         "p75": 116,
         "max": 120
       },
       "updateMs": {
-        "min": 1.9000000059604645,
-        "p25": 32.899999998509884,
-        "median": 33.20000000298023,
-        "p75": 33.79999999701977,
-        "max": 35.099999994039536
+        "min": 3.899999998509884,
+        "p25": 32.875,
+        "median": 33.19999999552965,
+        "p75": 33.80000000447035,
+        "max": 35
       },
       "jsCssTransferBytes": {
-        "min": 232907,
-        "p25": 232907,
-        "median": 232907,
-        "p75": 232907,
-        "max": 232907
+        "min": 233038,
+        "p25": 233038,
+        "median": 233038,
+        "p75": 233038,
+        "max": 233038
       },
       "jsCssRequests": {
         "min": 25,
@@ -332,11 +332,11 @@
         "max": 25
       },
       "allResourceTransferBytes": {
-        "min": 599930,
-        "p25": 599930,
-        "median": 599931,
-        "p75": 599931,
-        "max": 599931
+        "min": 600108,
+        "p25": 600109,
+        "median": 600109,
+        "p75": 600109,
+        "max": 600109
       },
       "portalJsCssTransferBytes": {
         "min": 0,
@@ -346,11 +346,11 @@
         "max": 0
       },
       "longTaskMs": {
-        "min": 50,
-        "p25": 51,
-        "median": 54,
-        "p75": 54,
-        "max": 55
+        "min": 51,
+        "p25": 53,
+        "median": 53,
+        "p75": 55,
+        "max": 58
       }
     },
     {
@@ -358,32 +358,32 @@
       "profile": "loopback",
       "runs": 9,
       "remoteReadyMs": {
-        "min": 178.79999999701977,
-        "p25": 179.80000000447035,
-        "median": 181.19999999552965,
-        "p75": 183.09999999403954,
-        "max": 200.79999999701977
+        "min": 172.39999999850988,
+        "p25": 181.59999999403954,
+        "median": 188.89999999850988,
+        "p75": 191.09999999403954,
+        "max": 201.39999999850988
       },
       "fcpMs": {
-        "min": 96,
-        "p25": 100,
-        "median": 100,
-        "p75": 104,
-        "max": 124
+        "min": 100,
+        "p25": 108,
+        "median": 112,
+        "p75": 112,
+        "max": 116
       },
       "updateMs": {
-        "min": 2.2000000029802322,
+        "min": 6.700000002980232,
         "p25": 32.899999998509884,
-        "median": 33.100000001490116,
-        "p75": 33.899999998509884,
-        "max": 35.20000000298023
+        "median": 33.25,
+        "p75": 33.70000000298023,
+        "max": 34.80000000447035
       },
       "jsCssTransferBytes": {
-        "min": 205493,
-        "p25": 205493,
-        "median": 205493,
-        "p75": 205493,
-        "max": 205493
+        "min": 205619,
+        "p25": 205619,
+        "median": 205619,
+        "p75": 205619,
+        "max": 205619
       },
       "jsCssRequests": {
         "min": 27,
@@ -393,11 +393,11 @@
         "max": 27
       },
       "allResourceTransferBytes": {
-        "min": 572560,
-        "p25": 572560,
-        "median": 572561,
-        "p75": 572561,
-        "max": 572561
+        "min": 572731,
+        "p25": 572732,
+        "median": 572732,
+        "p75": 572732,
+        "max": 572732
       },
       "portalJsCssTransferBytes": {
         "min": 0,
@@ -408,10 +408,10 @@
       },
       "longTaskMs": {
         "min": 0,
-        "p25": 0,
-        "median": 51,
-        "p75": 52,
-        "max": 60
+        "p25": 50,
+        "median": 52,
+        "p75": 54,
+        "max": 55
       }
     },
     {
@@ -419,93 +419,32 @@
       "profile": "loopback",
       "runs": 9,
       "remoteReadyMs": {
-        "min": 179,
-        "p25": 180.79999999701977,
-        "median": 181.30000000447035,
-        "p75": 181.60000000149012,
-        "max": 200.69999999552965
-      },
-      "fcpMs": {
-        "min": 100,
-        "p25": 100,
-        "median": 100,
-        "p75": 112,
-        "max": 120
-      },
-      "updateMs": {
-        "min": 2,
-        "p25": 32.70000000111759,
-        "median": 33.149999998509884,
-        "p75": 33.82500000298023,
-        "max": 35.100000001490116
-      },
-      "jsCssTransferBytes": {
-        "min": 189180,
-        "p25": 189180,
-        "median": 189180,
-        "p75": 189180,
-        "max": 189180
-      },
-      "jsCssRequests": {
-        "min": 27,
-        "p25": 27,
-        "median": 27,
-        "p75": 27,
-        "max": 27
-      },
-      "allResourceTransferBytes": {
-        "min": 556246,
-        "p25": 556246,
-        "median": 556247,
-        "p75": 556247,
-        "max": 556247
-      },
-      "portalJsCssTransferBytes": {
-        "min": 0,
-        "p25": 0,
-        "median": 0,
-        "p75": 0,
-        "max": 0
-      },
-      "longTaskMs": {
-        "min": 50,
-        "p25": 50,
-        "median": 53,
-        "p75": 53,
-        "max": 60
-      }
-    },
-    {
-      "scenario": "redact-optimized",
-      "profile": "loopback",
-      "runs": 9,
-      "remoteReadyMs": {
-        "min": 175.19999999552965,
-        "p25": 177.59999999403954,
-        "median": 180.70000000298023,
-        "p75": 182.29999999701977,
-        "max": 197
+        "min": 177.30000000447035,
+        "p25": 179,
+        "median": 181,
+        "p75": 181.89999999850988,
+        "max": 194
       },
       "fcpMs": {
         "min": 96,
-        "p25": 96,
+        "p25": 100,
         "median": 100,
-        "p75": 116,
+        "p75": 108,
         "max": 120
       },
       "updateMs": {
-        "min": 1.7999999970197678,
-        "p25": 32.90000000409782,
-        "median": 33.29999999701977,
-        "p75": 33.69999999552965,
-        "max": 35.100000001490116
+        "min": 4.0999999940395355,
+        "p25": 32.774999998509884,
+        "median": 33.20000000298023,
+        "p75": 33.79999999701977,
+        "max": 35
       },
       "jsCssTransferBytes": {
-        "min": 133838,
-        "p25": 133838,
-        "median": 133838,
-        "p75": 133838,
-        "max": 133838
+        "min": 189307,
+        "p25": 189307,
+        "median": 189307,
+        "p75": 189307,
+        "max": 189307
       },
       "jsCssRequests": {
         "min": 27,
@@ -515,11 +454,11 @@
         "max": 27
       },
       "allResourceTransferBytes": {
-        "min": 500905,
-        "p25": 500905,
-        "median": 500906,
-        "p75": 500906,
-        "max": 500906
+        "min": 556421,
+        "p25": 556421,
+        "median": 556421,
+        "p75": 556421,
+        "max": 556422
       },
       "portalJsCssTransferBytes": {
         "min": 0,
@@ -532,8 +471,69 @@
         "min": 0,
         "p25": 50,
         "median": 50,
-        "p75": 52,
-        "max": 58
+        "p75": 51,
+        "max": 55
+      }
+    },
+    {
+      "scenario": "redact-optimized",
+      "profile": "loopback",
+      "runs": 9,
+      "remoteReadyMs": {
+        "min": 173.69999999552965,
+        "p25": 177.20000000298023,
+        "median": 179.60000000149012,
+        "p75": 181.60000000149012,
+        "max": 187.80000000447035
+      },
+      "fcpMs": {
+        "min": 100,
+        "p25": 104,
+        "median": 116,
+        "p75": 116,
+        "max": 120
+      },
+      "updateMs": {
+        "min": 8.100000001490116,
+        "p25": 32.899999998509884,
+        "median": 33.25,
+        "p75": 33.70000000298023,
+        "max": 35
+      },
+      "jsCssTransferBytes": {
+        "min": 133960,
+        "p25": 133960,
+        "median": 133960,
+        "p75": 133960,
+        "max": 133960
+      },
+      "jsCssRequests": {
+        "min": 27,
+        "p25": 27,
+        "median": 27,
+        "p75": 27,
+        "max": 27
+      },
+      "allResourceTransferBytes": {
+        "min": 501073,
+        "p25": 501074,
+        "median": 501074,
+        "p75": 501074,
+        "max": 501074
+      },
+      "portalJsCssTransferBytes": {
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "max": 0
+      },
+      "longTaskMs": {
+        "min": 50,
+        "p25": 51,
+        "median": 52,
+        "p75": 53,
+        "max": 54
       }
     },
     {
@@ -541,32 +541,32 @@
       "profile": "constrained",
       "runs": 9,
       "remoteReadyMs": {
-        "min": 1351.1999999955297,
-        "p25": 1363.5,
-        "median": 1404.6000000014901,
-        "p75": 1418.7999999970198,
-        "max": 1432.5999999940395
+        "min": 1361.3999999985099,
+        "p25": 1397.5,
+        "median": 1417.5,
+        "p75": 1424.1000000014901,
+        "max": 1437.7999999970198
       },
       "fcpMs": {
-        "min": 484,
-        "p25": 488,
-        "median": 492,
-        "p75": 492,
-        "max": 504
+        "min": 488,
+        "p25": 492,
+        "median": 496,
+        "p75": 504,
+        "max": 508
       },
       "updateMs": {
-        "min": 8,
+        "min": 7.699999995529652,
         "p25": 32.899999998509884,
-        "median": 33.099999997764826,
+        "median": 33.100000001490116,
         "p75": 33.899999998509884,
         "max": 35.100000001490116
       },
       "jsCssTransferBytes": {
-        "min": 232907,
-        "p25": 232907,
-        "median": 232907,
-        "p75": 232907,
-        "max": 232907
+        "min": 233038,
+        "p25": 233038,
+        "median": 233038,
+        "p75": 233038,
+        "max": 233038
       },
       "jsCssRequests": {
         "min": 25,
@@ -576,11 +576,11 @@
         "max": 25
       },
       "allResourceTransferBytes": {
-        "min": 599930,
-        "p25": 599930,
-        "median": 599930,
-        "p75": 599930,
-        "max": 599931
+        "min": 600108,
+        "p25": 600108,
+        "median": 600109,
+        "p75": 600109,
+        "max": 600109
       },
       "portalJsCssTransferBytes": {
         "min": 0,
@@ -590,11 +590,11 @@
         "max": 0
       },
       "longTaskMs": {
-        "min": 469,
-        "p25": 477,
-        "median": 507,
-        "p75": 512,
-        "max": 539
+        "min": 509,
+        "p25": 515,
+        "median": 516,
+        "p75": 518,
+        "max": 530
       }
     },
     {
@@ -602,32 +602,32 @@
       "profile": "constrained",
       "runs": 9,
       "remoteReadyMs": {
-        "min": 1228.1000000014901,
-        "p25": 1269.5999999940395,
-        "median": 1284.8999999985099,
-        "p75": 1295.7999999970198,
-        "max": 1314.7000000029802
+        "min": 1228.7999999970198,
+        "p25": 1271.3999999985099,
+        "median": 1283.4000000059605,
+        "p75": 1298.7000000029802,
+        "max": 1300.2000000029802
       },
       "fcpMs": {
-        "min": 484,
-        "p25": 488,
-        "median": 500,
+        "min": 480,
+        "p25": 492,
+        "median": 504,
         "p75": 504,
         "max": 508
       },
       "updateMs": {
-        "min": 9.299999997019768,
-        "p25": 32.80000000447035,
-        "median": 33.04999999701977,
-        "p75": 33.80000000447035,
+        "min": 9.5,
+        "p25": 32.57500000111759,
+        "median": 33.100000001490116,
+        "p75": 34,
         "max": 35.100000001490116
       },
       "jsCssTransferBytes": {
-        "min": 205493,
-        "p25": 205493,
-        "median": 205493,
-        "p75": 205493,
-        "max": 205493
+        "min": 205619,
+        "p25": 205619,
+        "median": 205619,
+        "p75": 205619,
+        "max": 205619
       },
       "jsCssRequests": {
         "min": 27,
@@ -637,11 +637,11 @@
         "max": 27
       },
       "allResourceTransferBytes": {
-        "min": 572560,
-        "p25": 572560,
-        "median": 572560,
-        "p75": 572560,
-        "max": 572561
+        "min": 572731,
+        "p25": 572731,
+        "median": 572731,
+        "p75": 572731,
+        "max": 572732
       },
       "portalJsCssTransferBytes": {
         "min": 0,
@@ -651,11 +651,11 @@
         "max": 0
       },
       "longTaskMs": {
-        "min": 455,
-        "p25": 492,
-        "median": 496,
-        "p75": 500,
-        "max": 514
+        "min": 486,
+        "p25": 500,
+        "median": 501,
+        "p75": 506,
+        "max": 508
       }
     },
     {
@@ -663,32 +663,32 @@
       "profile": "constrained",
       "runs": 9,
       "remoteReadyMs": {
-        "min": 1188.7000000029802,
-        "p25": 1232.8000000044703,
-        "median": 1272.1000000014901,
-        "p75": 1282.8999999985099,
-        "max": 1310.8999999985099
+        "min": 1235,
+        "p25": 1268.5,
+        "median": 1281.1999999955297,
+        "p75": 1287.2000000029802,
+        "max": 1296.8999999985099
       },
       "fcpMs": {
-        "min": 476,
-        "p25": 488,
-        "median": 496,
-        "p75": 496,
+        "min": 488,
+        "p25": 492,
+        "median": 492,
+        "p75": 504,
         "max": 508
       },
       "updateMs": {
         "min": 9.099999994039536,
-        "p25": 32.57500000111759,
+        "p25": 32.650000002235174,
         "median": 33.100000001490116,
-        "p75": 33.899999998509884,
-        "max": 35.100000001490116
+        "p75": 34,
+        "max": 35.19999999552965
       },
       "jsCssTransferBytes": {
-        "min": 189180,
-        "p25": 189180,
-        "median": 189180,
-        "p75": 189180,
-        "max": 189180
+        "min": 189307,
+        "p25": 189307,
+        "median": 189307,
+        "p75": 189307,
+        "max": 189307
       },
       "jsCssRequests": {
         "min": 27,
@@ -698,11 +698,11 @@
         "max": 27
       },
       "allResourceTransferBytes": {
-        "min": 556246,
-        "p25": 556247,
-        "median": 556247,
-        "p75": 556247,
-        "max": 556247
+        "min": 556421,
+        "p25": 556421,
+        "median": 556421,
+        "p75": 556421,
+        "max": 556422
       },
       "portalJsCssTransferBytes": {
         "min": 0,
@@ -712,11 +712,11 @@
         "max": 0
       },
       "longTaskMs": {
-        "min": 448,
-        "p25": 459,
-        "median": 490,
-        "p75": 495,
-        "max": 499
+        "min": 494,
+        "p25": 496,
+        "median": 501,
+        "p75": 503,
+        "max": 504
       }
     },
     {
@@ -724,32 +724,32 @@
       "profile": "constrained",
       "runs": 9,
       "remoteReadyMs": {
-        "min": 1205.6000000014901,
-        "p25": 1219.5,
-        "median": 1234.3000000044703,
-        "p75": 1251.3999999985099,
-        "max": 1304.4000000059605
+        "min": 1219.2999999970198,
+        "p25": 1223.3999999985099,
+        "median": 1235.2999999970198,
+        "p75": 1245.2000000029802,
+        "max": 1253.2000000029802
       },
       "fcpMs": {
-        "min": 476,
-        "p25": 488,
-        "median": 492,
-        "p75": 508,
-        "max": 512
+        "min": 488,
+        "p25": 492,
+        "median": 496,
+        "p75": 504,
+        "max": 508
       },
       "updateMs": {
-        "min": 9.299999997019768,
-        "p25": 32.80000000447035,
+        "min": 9.5,
+        "p25": 32.899999998509884,
         "median": 33.100000001490116,
         "p75": 33.899999998509884,
-        "max": 34.70000000298023
+        "max": 35.100000001490116
       },
       "jsCssTransferBytes": {
-        "min": 133838,
-        "p25": 133838,
-        "median": 133838,
-        "p75": 133838,
-        "max": 133838
+        "min": 133960,
+        "p25": 133960,
+        "median": 133960,
+        "p75": 133960,
+        "max": 133960
       },
       "jsCssRequests": {
         "min": 27,
@@ -759,11 +759,11 @@
         "max": 27
       },
       "allResourceTransferBytes": {
-        "min": 500905,
-        "p25": 500905,
-        "median": 500905,
-        "p75": 500906,
-        "max": 500906
+        "min": 501074,
+        "p25": 501074,
+        "median": 501074,
+        "p75": 501074,
+        "max": 501074
       },
       "portalJsCssTransferBytes": {
         "min": 0,
@@ -773,11 +773,11 @@
         "max": 0
       },
       "longTaskMs": {
-        "min": 456,
-        "p25": 492,
-        "median": 497,
-        "p75": 500,
-        "max": 521
+        "min": 491,
+        "p25": 501,
+        "median": 502,
+        "p75": 506,
+        "max": 509
       }
     }
   ],
@@ -787,8 +787,8 @@
       "apps": [
         {
           "app": "host",
-          "gzipBytes": 138197,
-          "brotliBytes": 120170
+          "gzipBytes": 138328,
+          "brotliBytes": 120279
         },
         {
           "app": "counter",
@@ -812,8 +812,8 @@
       "apps": [
         {
           "app": "host",
-          "gzipBytes": 93953,
-          "brotliBytes": 83599
+          "gzipBytes": 94079,
+          "brotliBytes": 83747
         },
         {
           "app": "counter",
@@ -837,8 +837,8 @@
       "apps": [
         {
           "app": "host",
-          "gzipBytes": 93956,
-          "brotliBytes": 83619
+          "gzipBytes": 94083,
+          "brotliBytes": 83819
         },
         {
           "app": "counter",
@@ -862,8 +862,8 @@
       "apps": [
         {
           "app": "host",
-          "gzipBytes": 93912,
-          "brotliBytes": 83627
+          "gzipBytes": 94034,
+          "brotliBytes": 83744
         },
         {
           "app": "counter",

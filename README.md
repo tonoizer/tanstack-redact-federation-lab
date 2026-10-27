@@ -89,6 +89,15 @@ npm run benchmark
 
 After building all four variants, this runs 72 cold-browser samples: 9 rounds per build with two CPU/network profiles. It records actual gzipped JS/CSS transfers, request counts, emitted gzip/Brotli sizes, readiness, cross-remote updates, and portal-open download deltas. Build/source hashes are checked before and after sampling. Read [the methodology and limitations](docs/BENCHMARKS.md) before quoting timing results.
 
+| Current build | Requested JS/CSS gzip | Emitted JS/CSS gzip |
+| --- | ---: | ---: |
+| React | 233.0 kB | 235.7 kB |
+| Redact, default aliases | 205.6 kB | 207.7 kB |
+| Redact, shared APIs | 189.3 kB | 191.4 kB |
+| Redact, shared APIs + MF core | **134.0 kB** | **136.1 kB** |
+
+That is **42.5% less requested JS/CSS than React**, and another **29.2% reduction versus the shared-API build**. The latter is a Federation-packaging benefit. All-resource transfer falls by about 16.5%; cross-remote update medians remain around 33 ms. The synthetic constrained readiness median is 1,235 ms versus React’s 1,418 ms. See the full report for the ranges and limitations.
+
 The optimized variant reuses the host’s Federation runtime-core through the plugin’s experimental external-runtime option. No Redact features are disabled. It also omits Snapshot support for this plain-ESM-entry experiment. Smaller payloads are a measured benefit; faster interactions are not assumed.
 
 ## Deploy to Zephyr
