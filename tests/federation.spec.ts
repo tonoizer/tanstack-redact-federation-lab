@@ -90,6 +90,7 @@ test('a failed remote is contained and the other two remain interactive', async 
   await page.route('http://localhost:4101/remoteEntry.js', route => route.abort())
   await page.goto('/')
   await expect(page.getByTestId('counter-error')).toBeVisible()
+  await expect(page.getByTestId('identity-status')).toHaveText('Remote load failed: counter')
   await expect(page.getByTestId('context')).toBeVisible()
   await page.getByRole('button', { name: 'Update from context remote' }).click()
   await expect(page.getByTestId('context-count')).toHaveText('1')

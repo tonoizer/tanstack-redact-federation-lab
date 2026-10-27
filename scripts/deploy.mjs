@@ -5,7 +5,10 @@ const file = 'deployments/zephyr.json'
 mkdirSync('deployments', { recursive: true })
 let state = { organization: 'kevin-beier', project: 'redact-mf-lab', scenario: 'redact-shared', remotes: {}, applications: {} }
 try { state = JSON.parse(readFileSync(file, 'utf8')) } catch {}
-for (const app of ['counter', 'context', 'portal', 'host']) {
+const selected = process.argv.slice(2)
+const apps = selected.length ? selected : ['counter', 'context', 'portal', 'host']
+if (apps.some(app => !['counter', 'context', 'portal', 'host'].includes(app))) throw new Error('Unknown application')
+for (const app of apps) {
   console.log(`\nDeploying ${app} to Zephyr Cloud`)
   const result = spawnSync(process.execPath, ['node_modules/vite/bin/vite.js', 'build', '--config', `apps/${app}/vite.config.ts`], {
     encoding: 'utf8', maxBuffer: 16 * 1024 * 1024,
@@ -15,8 +18,8 @@ for (const app of ['counter', 'context', 'portal', 'host']) {
   process.stderr.write(result.stderr ?? '')
   if (result.status !== 0) process.exit(result.status ?? 1)
   const output = `${result.stdout}\n${result.stderr}`.replace(/\x1b\[[0-9;]*m/g, '')
-  const urls = output.match(/https:\/\/[a-zA-Z0-9.-]+\.zephyr-cloud\.io\/?/g) ?? []
-  const url = urls.findLast(url => !/https:\/\/(app|api|docs|mcp)\./.test(url))
+  const urls = output.match(/https:\/\/[a-zA-Z0-9.-]+-ze\.(?:zephyrcloud\.app|zephyr-cloud\.io)\/?/g) ?? []
+  const url = urls.at(-1)
   if (!url) throw new Error(`No Zephyr deployment URL reported for ${app}; publication is not confirmed.`)
   const response = await fetch(app === 'host' ? url : new URL('/remoteEntry.js', url))
   if (!response.ok) throw new Error(`Published ${app} returned HTTP ${response.status}`)
