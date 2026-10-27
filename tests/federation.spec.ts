@@ -1,8 +1,13 @@
 import { test, expect } from '@playwright/test'
-import { mkdirSync, writeFileSync } from 'node:fs'
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 
 const scenario = process.env.LAB_SCENARIO ?? 'redact-shared'
 const naive = scenario === 'redact-naive'
+const live = !!process.env.LAB_BASE_URL
+const evidenceName = live ? 'zephyr-live' : scenario
+const remotes: Record<string, string> = live
+  ? JSON.parse(readFileSync('deployments/zephyr.json', 'utf8')).remotes
+  : Object.fromEntries(['counter', 'context', 'portal'].map((name, i) => [name, `http://localhost:${4101 + i}/remoteEntry.js`]))
 
 test('Start serves real HTML and hydration preserves the server DOM node', async ({ page, request }) => {
   const response = await request.get('/')
@@ -25,7 +30,7 @@ test('federation loads three real HTTP remote entries and exposes runtime identi
   await expect(page.getByTestId('identity-counter-useState')).toHaveText(naive ? 'FAIL' : 'PASS')
   await expect(page.getByTestId('identity-context-useState')).toHaveText(naive ? 'FAIL' : 'PASS')
   await expect(page.getByTestId('identity-portal-useState')).toHaveText(naive ? 'FAIL' : 'PASS')
-  expect([...entries].sort()).toEqual(['http://localhost:4101', 'http://localhost:4102', 'http://localhost:4103'])
+  expect([...entries].sort()).toEqual(Object.values(remotes).map(url => new URL(url).origin).sort())
   for (const name of ['counter', 'context', 'portal']) {
     await expect(page.getByTestId(`identity-${name}-contextObject`)).toHaveText('PASS')
   }
@@ -33,7 +38,7 @@ test('federation loads three real HTTP remote entries and exposes runtime identi
     remoteOrigins: [...entries].sort(), identity: await page.locator('tbody').innerText(),
     renderedErrors: await page.locator('[data-testid$="-error"]').allTextContents() }
   mkdirSync('artifacts/latest', { recursive: true })
-  writeFileSync(`artifacts/latest/${scenario}-identity.json`, JSON.stringify(evidence, null, 2) + '\n')
+  writeFileSync(`artifacts/latest/${evidenceName}-identity.json`, JSON.stringify(evidence, null, 2) + '\n')
 })
 
 test('hooks, host context, remote callbacks, portals and remounts work across boundaries', async ({ page }) => {
@@ -69,16 +74,16 @@ test('hooks, host context, remote callbacks, portals and remounts work across bo
   await expect(page.getByTestId('effect')).toHaveText('mounted')
   await expect(page.getByTestId('context-count')).toHaveText('3')
   expect(errors).toEqual([])
-  await page.screenshot({ path: `artifacts/latest/${scenario}-desktop.png`, fullPage: true })
+  await page.screenshot({ path: `artifacts/latest/${evidenceName}-desktop.png`, fullPage: true })
   await page.setViewportSize({ width: 390, height: 844 })
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true)
-  await page.screenshot({ path: `artifacts/latest/${scenario}-mobile.png`, fullPage: true })
+  await page.screenshot({ path: `artifacts/latest/${evidenceName}-mobile.png`, fullPage: true })
 })
 
 test('Suspense fallback remains visible while a remote HTTP request is delayed', async ({ page }) => {
   let release!: () => void
   const gate = new Promise<void>(resolve => { release = resolve })
-  await page.route('http://localhost:4101/remoteEntry.js', async route => { await gate; await route.continue() })
+  await page.route(remotes.counter, async route => { await gate; await route.continue() })
   await page.goto('/')
   await expect(page.getByTestId('counter-loading')).toBeVisible()
   await expect(page.getByTestId('context')).toBeVisible()
@@ -87,7 +92,7 @@ test('Suspense fallback remains visible while a remote HTTP request is delayed',
 })
 
 test('a failed remote is contained and the other two remain interactive', async ({ page }) => {
-  await page.route('http://localhost:4101/remoteEntry.js', route => route.abort())
+  await page.route(remotes.counter, route => route.abort())
   await page.goto('/')
   await expect(page.getByTestId('counter-error')).toBeVisible()
   await expect(page.getByTestId('identity-status')).toHaveText('Remote load failed: counter')

@@ -22,7 +22,7 @@ export const mf = createInstance({
     name, entry, type: 'module',
   })),
   shared: Object.fromEntries(Object.entries(modules).map(([key, value]) => [key, {
-    version: key === '@lab/contract' ? '1.0.0' : '19.3.1',
+    version: key === '@lab/contract' ? '1.0.0' : __LAB_SCENARIO__ === 'react' ? '19.3.1' : '0.2.1',
     lib: () => value,
     shareConfig: { singleton: true, requiredVersion: false },
   }])),

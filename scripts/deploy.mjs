@@ -27,4 +27,4 @@ for (const app of apps) {
   if (app !== 'host') state.remotes[app] = new URL('/remoteEntry.js', url).href
   writeFileSync(file, JSON.stringify(state, null, 2) + '\n')
 }
-console.log(`\nLive demo: ${state.applications.host.url}`)
+if (state.applications.host) console.log(`\nLive demo: ${state.applications.host.url}`)

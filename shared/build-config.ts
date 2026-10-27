@@ -30,7 +30,7 @@ export function remoteConfig(name: string, port: number) {
         shared: Object.fromEntries([
           ...reactEntries.map(key => [key, {
             singleton: true, import: false as const, requiredVersion: false as const,
-            version: '19.3.1',
+            version: scenario === 'react' ? '19.3.1' : '0.2.1',
           }]),
           ['@lab/contract', {
             singleton: true, import: false as const, requiredVersion: false as const,

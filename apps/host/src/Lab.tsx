@@ -1,5 +1,6 @@
 import { Component, lazy, Suspense, useEffect, useState, type ReactNode } from 'react'
 import { LabContext } from '@lab/contract'
+import { Findings } from './Findings'
 
 type Check = { remote: string; checks: Record<string, boolean> }
 const remoteNames = ['counter', 'context', 'portal']
@@ -43,6 +44,7 @@ export function Lab() {
       <div className="remote-grid">{mounted && widgets.map(({ name, Widget }) => <Boundary key={name} name={name}><Suspense fallback={<div className="remote loading" data-testid={`${name}-loading`}>Loading {name} over HTTP…</div>}><Widget /></Suspense></Boundary>)}</div>
     </LabContext.Provider>
     <section className="evidence"><div><span className="eyebrow">LIVE EVIDENCE</span><h2>Identity, not assumptions.</h2><p>Strict equality against the host's actual imports. A green check means the same function or context object crossed the federation boundary.</p></div><table><thead><tr><th>Remote</th><th>useState</th><th>useContext</th><th>createElement</th><th>Context object</th><th>createPortal</th></tr></thead><tbody>{remoteNames.map(name => { const row = checks.find(c => c.remote === name); return <tr key={name}><th>{name}</th>{['useState', 'useContext', 'createElement', 'contextObject', 'createPortal'].map(key => <td key={key} data-testid={`identity-${name}-${key}`}>{row?.checks[key] === undefined ? '—' : row.checks[key] ? 'PASS' : 'FAIL'}</td>)}</tr> })}</tbody></table></section>
+    <Findings />
     <footer><span>Built to answer a question, not assume the answer.</span><span>SSR SHELL · CLIENT-LOADED REMOTES · PRODUCTION BUILDS</span></footer>
   </main>
 }
