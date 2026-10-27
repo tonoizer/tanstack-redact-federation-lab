@@ -25,6 +25,7 @@ for (const app of apps) {
   if (!response.ok) throw new Error(`Published ${app} returned HTTP ${response.status}`)
   state.applications[app] = { url, deployedAt: new Date().toISOString(), sourceCommit: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim() }
   if (app !== 'host') state.remotes[app] = new URL('/remoteEntry.js', url).href
+  else state.hostRemotes = { ...state.remotes }
   writeFileSync(file, JSON.stringify(state, null, 2) + '\n')
 }
 if (state.applications.host) console.log(`\nLive demo: ${state.applications.host.url}`)

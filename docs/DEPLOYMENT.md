@@ -15,7 +15,7 @@ Organization/project selection lives in [zephyr.config.mjs](../zephyr.config.mjs
 
 Normal `npm run build` and browser tests do not activate Zephyr publication. `scripts/deploy.mjs` sets `LAB_DEPLOY=1` and `ZE_FAIL_BUILD=true`, builds the remotes in order, captures their immutable URLs, and compiles them into the host’s Federation runtime registration. It confirms each remote entry is available over HTTP and the SSR host returns a successful response. It updates the manifest after each successful application deployment.
 
-The Zephyr TanStack Start integration does not resolve `zephyr:dependencies` into remote URLs. This demo uses a runtime-API host, so it handles the handoff using the newly deployed immutable URLs. There is no claim of selector/environment resolution or automated promotion. Updating a remote requires rebuilding the host against its new URL. Previous immutable host versions keep their original pins.
+The Zephyr TanStack Start integration does not resolve `zephyr:dependencies` into remote URLs. This demo uses a runtime-API host, so it handles the handoff using the newly deployed immutable URLs. There is no claim of selector/environment resolution or automated promotion. Updating a remote requires rebuilding the host against its new URL. Previous immutable host versions keep their original pins. The manifest separates the latest published `remotes` from `hostRemotes`, the pins used by the last successfully deployed host; live tests use `hostRemotes` even if a later remote-only deployment or partial deployment publishes newer remotes.
 
 ## Authentication
 

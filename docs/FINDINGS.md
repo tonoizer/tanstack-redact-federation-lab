@@ -105,6 +105,14 @@ Live verification checks actual cross-origin remote responses, reference identit
 
 These totals help inspect duplication and Federation overhead. They are not a measured page download, Core Web Vitals, CPU-time result, or a general percentage saving attributable to Redact. No rendering-performance claim is made.
 
+| Build | Host | Counter | Context | Portal | Total |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| React | 135,262 | 32,390 | 32,301 | 32,655 | **232,608** |
+| Redact, default aliases | 91,050 | 32,343 | 32,259 | 49,048 | **204,700** |
+| Redact, explicit shares | 91,050 | 32,379 | 32,299 | 32,657 | **188,385** |
+
+All values are **gzip bytes** under the method above. For this exact build, explicit sharing produces 44,223 fewer emitted gzip bytes than the React reference and 16,315 fewer than the default-alias Redact variant. These numbers include each remote’s Federation infrastructure.
+
 ## Scope and untested cases
 
 - Chromium on Windows locally; Linux CI runs the same local suite separately.

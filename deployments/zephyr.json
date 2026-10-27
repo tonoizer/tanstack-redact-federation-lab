@@ -3,30 +3,35 @@
   "project": "redact-mf-lab",
   "scenario": "redact-shared",
   "remotes": {
-    "counter": "https://beierkevin-61-counter-redact-mf-lab-kevin-beier-34879b87e-ze.zephyrcloud.app/remoteEntry.js",
-    "context": "https://beierkevin-62-context-redact-mf-lab-kevin-beier-7ca2fbd4a-ze.zephyrcloud.app/remoteEntry.js",
-    "portal": "https://beierkevin-63-portal-redact-mf-lab-kevin-beier-7ddbdca83-ze.zephyrcloud.app/remoteEntry.js"
+    "counter": "https://beierkevin-65-counter-redact-mf-lab-kevin-beier-2e590a0a3-ze.zephyrcloud.app/remoteEntry.js",
+    "context": "https://beierkevin-66-context-redact-mf-lab-kevin-beier-537e07da8-ze.zephyrcloud.app/remoteEntry.js",
+    "portal": "https://beierkevin-67-portal-redact-mf-lab-kevin-beier-a9bcfb063-ze.zephyrcloud.app/remoteEntry.js"
   },
   "applications": {
     "counter": {
-      "url": "https://beierkevin-61-counter-redact-mf-lab-kevin-beier-34879b87e-ze.zephyrcloud.app/",
-      "deployedAt": "2026-10-27T14:41:20.532Z",
-      "sourceCommit": "42df75d72aab4a36be68c6cd4bc5600aa0575018"
+      "url": "https://beierkevin-65-counter-redact-mf-lab-kevin-beier-2e590a0a3-ze.zephyrcloud.app/",
+      "deployedAt": "2026-10-27T14:52:50.841Z",
+      "sourceCommit": "2ca9b2c927192a4ba79fb6c6e86d10a58f72f819"
     },
     "context": {
-      "url": "https://beierkevin-62-context-redact-mf-lab-kevin-beier-7ca2fbd4a-ze.zephyrcloud.app/",
-      "deployedAt": "2026-10-27T14:41:25.621Z",
-      "sourceCommit": "42df75d72aab4a36be68c6cd4bc5600aa0575018"
+      "url": "https://beierkevin-66-context-redact-mf-lab-kevin-beier-537e07da8-ze.zephyrcloud.app/",
+      "deployedAt": "2026-10-27T14:52:54.397Z",
+      "sourceCommit": "2ca9b2c927192a4ba79fb6c6e86d10a58f72f819"
     },
     "portal": {
-      "url": "https://beierkevin-63-portal-redact-mf-lab-kevin-beier-7ddbdca83-ze.zephyrcloud.app/",
-      "deployedAt": "2026-10-27T14:41:29.229Z",
-      "sourceCommit": "42df75d72aab4a36be68c6cd4bc5600aa0575018"
+      "url": "https://beierkevin-67-portal-redact-mf-lab-kevin-beier-a9bcfb063-ze.zephyrcloud.app/",
+      "deployedAt": "2026-10-27T14:52:57.556Z",
+      "sourceCommit": "2ca9b2c927192a4ba79fb6c6e86d10a58f72f819"
     },
     "host": {
-      "url": "https://beierkevin-64-start-host-redact-mf-lab-kevin-beie-b193894b1-ze.zephyrcloud.app/",
-      "deployedAt": "2026-10-27T14:41:36.560Z",
-      "sourceCommit": "42df75d72aab4a36be68c6cd4bc5600aa0575018"
+      "url": "https://beierkevin-68-start-host-redact-mf-lab-kevin-beie-5322a365b-ze.zephyrcloud.app/",
+      "deployedAt": "2026-10-27T14:53:03.167Z",
+      "sourceCommit": "2ca9b2c927192a4ba79fb6c6e86d10a58f72f819"
     }
+  },
+  "hostRemotes": {
+    "counter": "https://beierkevin-65-counter-redact-mf-lab-kevin-beier-2e590a0a3-ze.zephyrcloud.app/remoteEntry.js",
+    "context": "https://beierkevin-66-context-redact-mf-lab-kevin-beier-537e07da8-ze.zephyrcloud.app/remoteEntry.js",
+    "portal": "https://beierkevin-67-portal-redact-mf-lab-kevin-beier-a9bcfb063-ze.zephyrcloud.app/remoteEntry.js"
   }
 }

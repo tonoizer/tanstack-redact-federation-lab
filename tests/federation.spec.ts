@@ -6,7 +6,7 @@ const naive = scenario === 'redact-naive'
 const live = !!process.env.LAB_BASE_URL
 const evidenceName = live ? 'zephyr-live' : scenario
 const remotes: Record<string, string> = live
-  ? JSON.parse(readFileSync('deployments/zephyr.json', 'utf8')).remotes
+  ? JSON.parse(readFileSync('deployments/zephyr.json', 'utf8')).hostRemotes
   : Object.fromEntries(['counter', 'context', 'portal'].map((name, i) => [name, `http://localhost:${4101 + i}/remoteEntry.js`]))
 
 test('Start serves real HTML and hydration preserves the server DOM node', async ({ page, request }) => {
@@ -34,7 +34,7 @@ test('federation loads three real HTTP remote entries and exposes runtime identi
   for (const name of ['counter', 'context', 'portal']) {
     await expect(page.getByTestId(`identity-${name}-contextObject`)).toHaveText('PASS')
   }
-  const evidence = { scenario, testedAt: new Date().toISOString(), node: process.version, browser: page.context().browser()?.version(),
+  const evidence = { scenario, hostURL: page.url(), testedAt: new Date().toISOString(), node: process.version, browser: page.context().browser()?.version(),
     remoteOrigins: [...entries].sort(), identity: await page.locator('tbody').innerText(),
     renderedErrors: await page.locator('[data-testid$="-error"]').allTextContents() }
   mkdirSync('artifacts/latest', { recursive: true })
